@@ -1,0 +1,4 @@
+window.background {
+    background-color: #{options[:background]};
+    color: #{options[:color]};
+}
