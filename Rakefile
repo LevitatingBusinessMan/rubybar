@@ -1,7 +1,7 @@
-task default: %w[doc]
+task default: %w[rdoc]
 
-task doc: :rdoc
-desc "Generate RDoc documentation"
-task :rdoc do
-    system("rdoc --main=README.md -o docs")
+require "rdoc/task"
+RDoc::Task.new do |doc|
+    doc.main = "README.md"
+    doc.rdoc_dir = "docs"
 end
