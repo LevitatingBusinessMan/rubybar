@@ -1,5 +1,9 @@
 require "gtk4"
 
+DEFAULT_INTERVAL = 5
+
+# Base Widget class.
+# Defines some common behavior across top level widgets in the bar.
 module Widgets
     class Widget < Gtk::Box
         # Interval with which to update this widget
@@ -10,11 +14,11 @@ module Widgets
 
         def initialize options={}
             @options = options
+			@interval = options[:interval] || DEFAULT_INTERVAL
             super :horizontal, @options[:padding] || 0
             add_css_class "barwidget"
 			@css = Gtk::CssProvider.new
             style_context.add_provider(@css, Gtk::StyleProvider::PRIORITY_USER)
-            update
 
             # click_controller = Gtk::GestureClick.new
             # click_controller = Gdk::BUTTON_PRIMARY
@@ -31,6 +35,12 @@ module Widgets
         def update
             # nothing
         end
+
+		# Like update but with error handling
+		def update_safe
+			update
+			# no error handling yet whoops
+		end
     
         # Update the CSS for this widget
 		# doesn't work yet?
@@ -38,6 +48,18 @@ module Widgets
 			@css.load_from_data css
 			#style_context.add_provider(@css, Gtk::StyleProvider::PRIORITY_USER)
         end
+
+		private
+		def init_timer
+			update_safe
+			return if @interval == nil
+			@timer = Thread.new {
+				loop do
+					sleep @interval
+					update_safe
+				end
+			}
+		end
 
         # Create a Widgets::Widget from a hash with options
         def self.from_options widget

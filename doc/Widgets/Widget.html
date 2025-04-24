@@ -189,7 +189,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="from_options-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 63</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">from_options</span> <span class="ruby-identifier">widget</span>
     <span class="ruby-identifier">class_name</span> = <span class="ruby-identifier">widget</span>[<span class="ruby-value">:name</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>
     <span class="ruby-keyword">if</span> <span class="ruby-constant">Widgets</span>.<span class="ruby-identifier">const_defined?</span> <span class="ruby-identifier">class_name</span>
@@ -224,7 +224,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 13</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>={}
     <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">options</span>
                 <span class="ruby-ivar">@interval</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_INTERVAL</span>
@@ -279,7 +279,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="css-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 45</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">css</span> <span class="ruby-identifier">css</span>
                 <span class="ruby-ivar">@css</span>.<span class="ruby-identifier">load_from_data</span> <span class="ruby-identifier">css</span>
                 <span class="ruby-comment">#style_context.add_provider(@css, Gtk::StyleProvider::PRIORITY_USER)</span>
@@ -309,7 +309,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 33</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
     <span class="ruby-comment"># nothing</span>
 <span class="ruby-keyword">end</span></pre>
@@ -338,7 +338,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update_safe-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 38</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_safe</span>
         <span class="ruby-identifier">update</span>
         <span class="ruby-comment"># no error handling yet whoops</span>
