@@ -1,4 +1,18 @@
+* {
+    color: #{options[:color]};
+}
+
 window.background {
     background-color: #{options[:background]};
-    color: #{options[:color]};
+}
+
+button {
+    background-image: none;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid #{options[:color]};
+}
+
+button:hover {
+    border: 1px solid #73BA25;
 }

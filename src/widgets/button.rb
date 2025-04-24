@@ -1,13 +1,17 @@
 require "gtk4"
 require_relative "../widgets"
 
-# A custom widget that executs a proc
+=begin A generic button widget
+[on_click:]
+  Block to execute when clicked
+=end
 class Widgets::Button < Widgets::Widget
     def initialize options
         @proc = options[:proc]
-        options[:padding] ||= 10
+        @button = Gtk::Button.new label: ''
         super
-        @button = Gtk::Button.new label: @str
+        update_safe
+        init_timer if options[:interval]
         append @button
 
         if options.include? :on_click
@@ -15,6 +19,6 @@ class Widgets::Button < Widgets::Widget
         end
     end
     def update
-        @str = @proc.call
+        @button.set_label @proc.call
     end
 end

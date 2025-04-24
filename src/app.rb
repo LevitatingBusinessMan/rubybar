@@ -20,7 +20,7 @@ class App < Gtk::Application
     Gtk::StyleContext.add_provider_for_display(
       Gdk::Display.default,
       provider,
-      Gtk::StyleProvider::PRIORITY_APPLICATION
+      Gtk::StyleProvider::PRIORITY_USER
     )
   end
 end

@@ -5,10 +5,11 @@ require_relative "../widgets"
 class Widgets::Uptime < Widgets::Widget
     def initialize options
         super
-        @label = Gtk::Label.new @str
+        @label = Gtk::Label.new ''
+        init_timer
         append @label
     end
     def update
-        @str = `uptime`.chomp
+        @label.set_text `uptime`.chomp
     end
 end

@@ -14,22 +14,16 @@ class Bar < Gtk::ApplicationWindow
     box = Gtk::Box.new :horizontal
     box.valign = :center
     box.halign = :center
-    box.spacing = 10
+    box.spacing = app.options[:spacing] || 10
+    box.name = "bar"
     set_child box
 
     for widget in app.options[:widgets]
       pp widget if app.options[:verbose]
-      case widget[:name]
-      when :custom
-        box.append Widgets::Custom.new widget
+      if klass = Widgets::Widget.from_options widget
+        box.append klass
       else
-        class_name = widget[:name].to_s.camelize
-        if Widgets.const_defined? class_name
-          klass = Widgets.const_get class_name
-          box.append klass.new widget
-        else
-          puts "Unknown widget name #{widget[:name].inspect}"
-        end
+        puts "Unknown widget name #{widget[:name].inspect}"
       end
     end
   end

@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>class Widgets::Button - RDoc Documentation</title>
+<title>class Widgets::Power - RDoc Documentation</title>
 
-  <meta name="keywords" content="ruby,class,Widgets::Button">
+  <meta name="keywords" content="ruby,class,Widgets::Power">
 
-    <meta name="description" content="class Widgets::Button: [on_click:] Block to execute when clicked">
+    <meta name="description" content="class Widgets::Power: A custom widget that executs a proc">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -82,13 +82,6 @@
 
 
 
-  <div class="nav-section">
-    <h3>Instance Methods</h3>
-    <ul class="link-list" role="directory">
-      <li ><a href="#method-i-update">update</a></li>
-    </ul>
-  </div>
-
 
 
   <footer id="validator-badges" role="contentinfo">
@@ -99,7 +92,7 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-Widgets::Button">
+<main role="main" aria-labelledby="class-Widgets::Power">
   
   
     <ol role="navigation" aria-label="breadcrumb" class="breadcrumb">
@@ -112,22 +105,20 @@
       
       <li>
         
-        <span>Button</span>
+        <span>Power</span>
         
       </li>
       
     </ol>
   
 
-  <h1 id="class-Widgets::Button" class="anchor-link class">
-    class Widgets::Button
+  <h1 id="class-Widgets::Power" class="anchor-link class">
+    class Widgets::Power
   </h1>
 
   <section class="description">
-    <dl class="rdoc-list label-list"><dt>on_click:</dt>
-<dd>
-<p>Block to execute when clicked</p>
-</dd></dl>
+    
+<p>A custom widget that executs a proc</p>
 
   </section>
 
@@ -160,16 +151,13 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets/button.rb, line 9</span>
+            <pre><span class="ruby-comment"># File src/widgets/power.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
-    <span class="ruby-ivar">@proc</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>]
     <span class="ruby-keyword">super</span>
-    <span class="ruby-ivar">@button</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">label:</span> <span class="ruby-ivar">@str</span>
+    <span class="ruby-ivar">@button</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">label:</span> <span class="ruby-string">&quot;&quot;</span>
     <span class="ruby-identifier">append</span> <span class="ruby-ivar">@button</span>
 
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">:on_click</span>
-        <span class="ruby-ivar">@button</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&quot;clicked&quot;</span>) { <span class="ruby-identifier">options</span>[<span class="ruby-value">:on_click</span>].<span class="ruby-identifier">call</span> }
-    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@button</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&quot;clicked&quot;</span>) { <span class="ruby-string">`notify-send &#39;imagine a shutdown&#39;`</span> }
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -177,42 +165,6 @@
               Calls superclass method
               <a href="Widget.html#method-c-new"><code>Widgets::Widget::new</code></a>
             </div>
-        </div>
-
-
-      </div>
-
-    </section>
-
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section anchor-link">
-       <header>
-         <h3>Public Instance Methods</h3>
-       </header>
-
-      <div id="method-i-update" class="method-detail anchor-link ">
-        <div class="method-header">
-            <div class="method-heading">
-              <a href="#method-i-update" title="Link to this method">
-                <span class="method-name">update</span>
-                <span class="method-args">()</span>
-              </a>
-            </div>
-        </div>
-
-          <div class="method-controls">
-            <details class="method-source-toggle">
-              <summary>Source</summary>
-            </details>
-          </div>
-
-        <div class="method-description">
-          <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets/button.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-    <span class="ruby-ivar">@str</span> = <span class="ruby-ivar">@proc</span>.<span class="ruby-identifier">call</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
         </div>
 
 

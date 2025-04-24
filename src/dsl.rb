@@ -52,4 +52,8 @@ class DSL
     @options[:widgets] << {name: name}.merge(options).merge(proc: block)
   end
 
+  def spacing spacing
+    @options[:spacing] = spacing
+  end
+
 end

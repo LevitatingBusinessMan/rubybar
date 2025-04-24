@@ -76,6 +76,7 @@
   <div class="nav-section">
     <h3>Class Methods</h3>
     <ul class="link-list" role="directory">
+      <li ><a href="#method-c-from_options">from_options</a></li>
       <li class="calls-super" ><a href="#method-c-new">new</a></li>
     </ul>
   </div>
@@ -85,6 +86,7 @@
   <div class="nav-section">
     <h3>Instance Methods</h3>
     <ul class="link-list" role="directory">
+      <li ><a href="#method-i-css">css</a></li>
       <li ><a href="#method-i-update">update</a></li>
     </ul>
   </div>
@@ -168,6 +170,41 @@
          <h3>Public Class Methods</h3>
        </header>
 
+      <div id="method-c-from_options" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-c-from_options" title="Link to this method">
+                <span class="method-name">from_options</span>
+                <span class="method-args">(widget)</span>
+              </a>
+            </div>
+        </div>
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+
+        <div class="method-description">
+          <div class="method-source-code" id="from_options-source">
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">from_options</span> <span class="ruby-identifier">widget</span>
+    <span class="ruby-identifier">class_name</span> = <span class="ruby-identifier">widget</span>[<span class="ruby-value">:name</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Widgets</span>.<span class="ruby-identifier">const_defined?</span> <span class="ruby-identifier">class_name</span>
+      <span class="ruby-identifier">klass</span> = <span class="ruby-constant">Widgets</span>.<span class="ruby-identifier">const_get</span> <span class="ruby-identifier">class_name</span>
+                  <span class="ruby-identifier">kwidget</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">widget</span>
+                  <span class="ruby-identifier">kwidget</span>.<span class="ruby-identifier">css</span> <span class="ruby-identifier">widget</span>[<span class="ruby-value">:css</span>] <span class="ruby-keyword">if</span> <span class="ruby-identifier">widget</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">:css</span>
+      <span class="ruby-keyword">return</span> <span class="ruby-identifier">kwidget</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          <p>Create a <a href="Widget.html"><code>Widgets::Widget</code></a> from a hash with options</p>
+        </div>
+
+
+      </div>
+
       <div id="method-c-new" class="method-detail anchor-link ">
         <div class="method-header">
             <div class="method-heading">
@@ -190,11 +227,19 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>={}
     <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">options</span>
     <span class="ruby-keyword">super</span> <span class="ruby-value">:horizontal</span>, <span class="ruby-ivar">@options</span>[<span class="ruby-value">:padding</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">add_css_class</span> <span class="ruby-string">&quot;barwidget&quot;</span>
+                <span class="ruby-ivar">@css</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">CssProvider</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-ivar">@css</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
     <span class="ruby-identifier">update</span>
+
+    <span class="ruby-comment"># click_controller = Gtk::GestureClick.new</span>
+    <span class="ruby-comment"># click_controller = Gdk::BUTTON_PRIMARY</span>
+    <span class="ruby-comment"># click_controller.signal_connect &quot;pressed&quot; do |gesture, n_press, x, y|</span>
+    <span class="ruby-comment"># end</span>
 
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">:on_click</span>
         <span class="ruby-comment"># this doesn&#39;t work because it&#39;s a box</span>
-        <span class="ruby-comment">#signal_connect(&quot;activate&quot;) &amp;options[:on_click]</span>
+        <span class="ruby-comment">#signal_connect(&quot;clicked&quot;) &amp;options[:on_click]</span>
     <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -215,6 +260,36 @@
          <h3>Public Instance Methods</h3>
        </header>
 
+      <div id="method-i-css" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-css" title="Link to this method">
+                <span class="method-name">css</span>
+                <span class="method-args">(css)</span>
+              </a>
+            </div>
+        </div>
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+
+        <div class="method-description">
+          <div class="method-source-code" id="css-source">
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">css</span> <span class="ruby-identifier">css</span>
+                <span class="ruby-ivar">@css</span>.<span class="ruby-identifier">load_from_data</span> <span class="ruby-identifier">css</span>
+                <span class="ruby-comment">#style_context.add_provider(@css, Gtk::StyleProvider::PRIORITY_USER)</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          <p>Update the CSS for this widget doesn’t work yet?</p>
+        </div>
+
+
+      </div>
+
       <div id="method-i-update" class="method-detail anchor-link ">
         <div class="method-header">
             <div class="method-heading">
@@ -233,7 +308,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 23</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
     <span class="ruby-comment"># nothing</span>
 <span class="ruby-keyword">end</span></pre>
