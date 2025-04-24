@@ -1,7 +1,7 @@
-Thu, 24 Apr 2025 13:28:17 +0200
+Thu, 24 Apr 2025 13:44:57 +0200
 /home/rein/src/rubybar/Gemfile	Wed, 23 Apr 2025 21:48:37 +0200
 /home/rein/src/rubybar/Gemfile.lock	Wed, 23 Apr 2025 21:48:37 +0200
-/home/rein/src/rubybar/README.md	Wed, 23 Apr 2025 21:53:33 +0200
+/home/rein/src/rubybar/README.md	Thu, 24 Apr 2025 13:44:35 +0200
 /home/rein/src/rubybar/Rakefile	Wed, 23 Apr 2025 21:54:37 +0200
 /home/rein/src/rubybar/src/app.rb	Thu, 24 Apr 2025 13:01:15 +0200
 /home/rein/src/rubybar/src/bar.rb	Thu, 24 Apr 2025 13:15:51 +0200
@@ -9,9 +9,9 @@ Thu, 24 Apr 2025 13:28:17 +0200
 /home/rein/src/rubybar/src/main.rb	Wed, 23 Apr 2025 23:02:45 +0200
 /home/rein/src/rubybar/src/style.css	Thu, 24 Apr 2025 13:09:44 +0200
 /home/rein/src/rubybar/src/util.rb	Thu, 24 Apr 2025 02:46:52 +0200
-/home/rein/src/rubybar/src/widgets/button.rb	Thu, 24 Apr 2025 13:14:07 +0200
-/home/rein/src/rubybar/src/widgets/custom.rb	Thu, 24 Apr 2025 03:34:15 +0200
-/home/rein/src/rubybar/src/widgets/power.rb	Thu, 24 Apr 2025 13:27:36 +0200
-/home/rein/src/rubybar/src/widgets/uptime.rb	Thu, 24 Apr 2025 03:34:22 +0200
-/home/rein/src/rubybar/src/widgets.rb	Thu, 24 Apr 2025 13:26:27 +0200
-/home/rein/src/rubybar/test_config.rb	Thu, 24 Apr 2025 13:24:10 +0200
+/home/rein/src/rubybar/src/widgets/button.rb	Thu, 24 Apr 2025 13:42:15 +0200
+/home/rein/src/rubybar/src/widgets/custom.rb	Thu, 24 Apr 2025 13:40:29 +0200
+/home/rein/src/rubybar/src/widgets/power.rb	Thu, 24 Apr 2025 13:36:58 +0200
+/home/rein/src/rubybar/src/widgets/uptime.rb	Thu, 24 Apr 2025 13:41:07 +0200
+/home/rein/src/rubybar/src/widgets.rb	Thu, 24 Apr 2025 13:43:52 +0200
+/home/rein/src/rubybar/test_config.rb	Thu, 24 Apr 2025 13:44:27 +0200

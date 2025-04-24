@@ -101,7 +101,7 @@
   <div id="classindex-section" class="nav-section">
   <h3>Class and Module Index</h3>
 
-  <ul class="link-list"><li><code><a href="./App.html">App</a></code></li><li><code><a href="./Bar.html">Bar</a></code></li><li><code><a href="./DSL.html">DSL</a></code></li><li><code><a href="./String.html">String</a></code></li><li><details><summary><code><a href="./Widgets.html">Widgets</a></code></summary><ul class="link-list"><li><code><a href="./Widgets/Button.html">Button</a></code></li><li><code><a href="./Widgets/Custom.html">Custom</a></code></li><li><code><a href="./Widgets/Power.html">Power</a></code></li><li><code><a href="./Widgets/Uptime.html">Uptime</a></code></li><li><code><a href="./Widgets/Widget.html">Widget</a></code></li></ul></details></li></ul>
+  <ul class="link-list"><li><code><a href="./App.html">App</a></code></li><li><code><a href="./Bar.html">Bar</a></code></li><li><code><a href="./DSL.html">DSL</a></code></li><li><code><a href="./Object.html">Object</a></code></li><li><code><a href="./String.html">String</a></code></li><li><details><summary><code><a href="./Widgets.html">Widgets</a></code></summary><ul class="link-list"><li><code><a href="./Widgets/Button.html">Button</a></code></li><li><code><a href="./Widgets/Custom.html">Custom</a></code></li><li><code><a href="./Widgets/Power.html">Power</a></code></li><li><code><a href="./Widgets/Uptime.html">Uptime</a></code></li><li><code><a href="./Widgets/Widget.html">Widget</a></code></li></ul></details></li></ul>
 </div>
 
 
@@ -119,6 +119,15 @@
 <h1 id="label-RubyBar">RubyBar<span><a href="#label-RubyBar">&para;</a> <a href="#top">&uarr;</a></span></h1>
 
 <p>A bar for wayland implemented with Ruby and GTK. Configuration is done via a Ruby <a href="DSL.html"><code>DSL</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">widget</span> <span class="ruby-value">:power</span>
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:uptime</span>
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:custom</span>,
+    <span class="ruby-value">interval:</span> <span class="ruby-value">1</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-node">&quot;random value &#39;#{Random.rand(100)}&#39;&quot;</span>
+<span class="ruby-keyword">end</span>
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:button</span>, <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-string">`notify-send hi`</span> }, <span class="ruby-value">css:</span> <span class="ruby-string">&quot;button label {color: red;}&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-string">&quot;CLICK ME&quot;</span> <span class="ruby-keyword">end</span>
+</pre>
 
 <h2 id="label-Development">Development<span><a href="#label-Development">&para;</a> <a href="#top">&uarr;</a></span></h2>
 

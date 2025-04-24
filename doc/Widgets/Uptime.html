@@ -161,7 +161,8 @@
             <pre><span class="ruby-comment"># File src/widgets/uptime.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
     <span class="ruby-keyword">super</span>
-    <span class="ruby-ivar">@label</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@str</span>
+    <span class="ruby-ivar">@label</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-identifier">init_timer</span>
     <span class="ruby-identifier">append</span> <span class="ruby-ivar">@label</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -200,9 +201,9 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets/uptime.rb, line 11</span>
+            <pre><span class="ruby-comment"># File src/widgets/uptime.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-    <span class="ruby-ivar">@str</span> = <span class="ruby-string">`uptime`</span>.<span class="ruby-identifier">chomp</span>
+    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-string">`uptime`</span>.<span class="ruby-identifier">chomp</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

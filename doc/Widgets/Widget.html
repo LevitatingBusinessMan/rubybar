@@ -88,6 +88,7 @@
     <ul class="link-list" role="directory">
       <li ><a href="#method-i-css">css</a></li>
       <li ><a href="#method-i-update">update</a></li>
+      <li ><a href="#method-i-update_safe">update_safe</a></li>
     </ul>
   </div>
 
@@ -188,7 +189,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="from_options-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 43</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">from_options</span> <span class="ruby-identifier">widget</span>
     <span class="ruby-identifier">class_name</span> = <span class="ruby-identifier">widget</span>[<span class="ruby-value">:name</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>
     <span class="ruby-keyword">if</span> <span class="ruby-constant">Widgets</span>.<span class="ruby-identifier">const_defined?</span> <span class="ruby-identifier">class_name</span>
@@ -223,14 +224,14 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 11</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>={}
     <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">options</span>
+                <span class="ruby-ivar">@interval</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_INTERVAL</span>
     <span class="ruby-keyword">super</span> <span class="ruby-value">:horizontal</span>, <span class="ruby-ivar">@options</span>[<span class="ruby-value">:padding</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
     <span class="ruby-identifier">add_css_class</span> <span class="ruby-string">&quot;barwidget&quot;</span>
                 <span class="ruby-ivar">@css</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">CssProvider</span>.<span class="ruby-identifier">new</span>
     <span class="ruby-identifier">style_context</span>.<span class="ruby-identifier">add_provider</span>(<span class="ruby-ivar">@css</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">StyleProvider</span><span class="ruby-operator">::</span><span class="ruby-constant">PRIORITY_USER</span>)
-    <span class="ruby-identifier">update</span>
 
     <span class="ruby-comment"># click_controller = Gtk::GestureClick.new</span>
     <span class="ruby-comment"># click_controller = Gdk::BUTTON_PRIMARY</span>
@@ -278,7 +279,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="css-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 37</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">css</span> <span class="ruby-identifier">css</span>
                 <span class="ruby-ivar">@css</span>.<span class="ruby-identifier">load_from_data</span> <span class="ruby-identifier">css</span>
                 <span class="ruby-comment">#style_context.add_provider(@css, Gtk::StyleProvider::PRIORITY_USER)</span>
@@ -308,12 +309,42 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 31</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 33</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
     <span class="ruby-comment"># nothing</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           <p>Update method for this widget</p>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-update_safe" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-update_safe" title="Link to this method">
+                <span class="method-name">update_safe</span>
+                <span class="method-args">()</span>
+              </a>
+            </div>
+        </div>
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+
+        <div class="method-description">
+          <div class="method-source-code" id="update_safe-source">
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_safe</span>
+        <span class="ruby-identifier">update</span>
+        <span class="ruby-comment"># no error handling yet whoops</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          <p>Like update but with error handling</p>
         </div>
 
 
