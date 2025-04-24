@@ -5,12 +5,19 @@ Configuration is done via a Ruby DSL.
 
 ```RUBY
 widget :power
-widget :uptime
+widget :uptime, on_click: -> { spawn "alacritty -e htop&" }
 widget :custom,
-    interval: 1 do
-    "random value '#{Random.rand(100)}'"
+    interval: 1,
+    on_click: -> { `notify-send #{@rand}` } do
+    @rand = Random.rand 100
+    "random value '#{@rand}'"
 end
-widget :button, on_click: -> { `notify-send hi` }, css: "button label {color: red;}" do "CLICK ME" end
+
+widget :button,
+    on_click: -> { `notify-send hi` },
+    css: "button label {color: red;}" do
+        "CLICK ME"
+end
 ```
 
 ## Development

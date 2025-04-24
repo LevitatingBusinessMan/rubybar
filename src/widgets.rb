@@ -19,15 +19,18 @@ module Widgets
             add_css_class "barwidget"
 			@css = Gtk::CssProvider.new
             style_context.add_provider(@css, Gtk::StyleProvider::PRIORITY_USER)
+            
+            @click_controller = Gtk::GestureClick.new
+            @click_controller.button = Gdk::BUTTON_PRIMARY
+            add_controller(@click_controller)
 
-            # click_controller = Gtk::GestureClick.new
-            # click_controller = Gdk::BUTTON_PRIMARY
-            # click_controller.signal_connect "pressed" do |gesture, n_press, x, y|
-            # end
+            if options.include? :on_click and not @noclick
+                @click_controller.signal_connect("pressed") { options[:on_click].call }
+                set_cursor Gdk::Cursor.new(:pointer) # https://docs.gtk.org/gdk4/ctor.Cursor.new_from_name.html
+            end
 
-            if options.include? :on_click
-                # this doesn't work because it's a box
-                #signal_connect("clicked") &options[:on_click] 
+            if options.include? :cursor
+                set_cursor Gdk::Cursor.new options[:cursor]
             end
         end
     

@@ -4,8 +4,8 @@ require_relative "../widgets"
 # A custom widget that executs a proc
 class Widgets::Custom < Widgets::Widget
     def initialize options
-        @proc = options[:proc]
         super
+        @proc = options[:proc]
         @label = Gtk::Label.new ''
         init_timer
         append @label

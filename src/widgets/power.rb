@@ -1,13 +1,12 @@
 require "gtk4"
 require_relative "../widgets"
 
-# A custom widget that executs a proc
+# A simple power button
 class Widgets::Power < Widgets::Widget
     def initialize options
+        options[:on_click] ||= proc { `notify-send 'imagine a shutdown'` }
         super
         @button = Gtk::Button.new label: ""
         append @button
-
-        @button.signal_connect("clicked") { `notify-send 'imagine a shutdown'` }
     end
 end

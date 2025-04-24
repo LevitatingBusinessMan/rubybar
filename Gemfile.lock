@@ -11,6 +11,8 @@ GEM
       cairo (>= 1.16.2)
       glib2 (= 4.2.9)
     date (3.4.1)
+    ffi (1.17.2)
+    ffi (1.17.2-x86_64-linux-gnu)
     fiddle (1.1.7)
     gdk4 (4.2.9)
       cairo-gobject (= 4.2.9)
@@ -46,6 +48,8 @@ GEM
       json
       matrix
     stringio (3.1.7)
+    sys-cpu (1.1.0)
+      ffi (~> 1.1)
     xdg (9.2.0)
 
 PLATFORMS
@@ -56,6 +60,7 @@ DEPENDENCIES
   gtk4 (~> 4.2)
   gtk4_layer_shell (~> 1.0)
   rdoc (~> 6.13)
+  sys-cpu (~> 1.1)
   xdg (~> 9.2)
 
 BUNDLED WITH

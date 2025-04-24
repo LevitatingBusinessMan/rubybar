@@ -9,3 +9,5 @@ gem "gtk4_layer_shell", "~> 1.0"
 gem "xdg", "~> 9.2"
 
 gem "rdoc", "~> 6.13", group: :development
+
+gem "sys-cpu", "~> 1.1"
