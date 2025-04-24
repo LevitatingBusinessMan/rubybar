@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>class Widgets::Power - RDoc Documentation</title>
+<title>class Widgets::Spinner - RDoc Documentation</title>
 
-  <meta name="keywords" content="ruby,class,Widgets::Power">
+  <meta name="keywords" content="ruby,class,Widgets::Spinner">
 
-    <meta name="description" content="class Widgets::Power: A custom widget that executs a proc">
+    <meta name="description" content="Documentation for the Widgets::Spinner class">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -92,7 +92,7 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-Widgets::Power">
+<main role="main" aria-labelledby="class-Widgets::Spinner">
   
   
     <ol role="navigation" aria-label="breadcrumb" class="breadcrumb">
@@ -105,21 +105,19 @@
       
       <li>
         
-        <span>Power</span>
+        <span>Spinner</span>
         
       </li>
       
     </ol>
   
 
-  <h1 id="class-Widgets::Power" class="anchor-link class">
-    class Widgets::Power
+  <h1 id="class-Widgets::Spinner" class="anchor-link class">
+    class Widgets::Spinner
   </h1>
 
   <section class="description">
     
-<p>A custom widget that executs a proc</p>
-
   </section>
 
   <section id="5Buntitled-5D" class="documentation-section anchor-link">
@@ -151,13 +149,13 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets/power.rb, line 6</span>
+            <pre><span class="ruby-comment"># File test_config.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
     <span class="ruby-keyword">super</span>
-    <span class="ruby-ivar">@button</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">label:</span> <span class="ruby-string">&quot;&quot;</span>
-    <span class="ruby-identifier">append</span> <span class="ruby-ivar">@button</span>
-
-    <span class="ruby-ivar">@button</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&quot;clicked&quot;</span>) { <span class="ruby-string">`notify-send &#39;imagine a shutdown&#39;`</span> }
+    <span class="ruby-identifier">init_timer</span>
+    <span class="ruby-ivar">@spinner</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Spinner</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">append</span> <span class="ruby-ivar">@spinner</span>
+    <span class="ruby-ivar">@spinner</span>.<span class="ruby-identifier">start</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

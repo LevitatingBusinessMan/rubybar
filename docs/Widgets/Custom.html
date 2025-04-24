@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>class RubyBar::Bar - RDoc Documentation</title>
+<title>class Widgets::Custom - RDoc Documentation</title>
 
-  <meta name="keywords" content="ruby,class,RubyBar::Bar">
+  <meta name="keywords" content="ruby,class,Widgets::Custom">
 
-    <meta name="description" content="Documentation for the RubyBar::Bar class">
+    <meta name="description" content="class Widgets::Custom: A custom widget that executs a proc">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -67,7 +67,7 @@
   
   <div id="parent-class-section" class="nav-section">
   <h3>Ancestors</h3>
-  <ul><li>Gtk::ApplicationWindow</li></ul>
+  <ul><li><a href="Widget.html">Widgets::Widget</a><ul><li>Gtk::Box</li></ul></li></ul>
 </div>
 
   
@@ -82,6 +82,13 @@
 
 
 
+  <div class="nav-section">
+    <h3>Instance Methods</h3>
+    <ul class="link-list" role="directory">
+      <li ><a href="#method-i-update">update</a></li>
+    </ul>
+  </div>
+
 
 
   <footer id="validator-badges" role="contentinfo">
@@ -92,32 +99,34 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-RubyBar::Bar">
+<main role="main" aria-labelledby="class-Widgets::Custom">
   
   
     <ol role="navigation" aria-label="breadcrumb" class="breadcrumb">
       
       <li>
         
-        <a href="../RubyBar.html">RubyBar</a><span>::</span>
+        <a href="../Widgets.html">Widgets</a><span>::</span>
         
       </li>
       
       <li>
         
-        <span>Bar</span>
+        <span>Custom</span>
         
       </li>
       
     </ol>
   
 
-  <h1 id="class-RubyBar::Bar" class="anchor-link class">
-    class RubyBar::Bar
+  <h1 id="class-Widgets::Custom" class="anchor-link class">
+    class Widgets::Custom
   </h1>
 
   <section class="description">
     
+<p>A custom widget that executs a proc</p>
+
   </section>
 
   <section id="5Buntitled-5D" class="documentation-section anchor-link">
@@ -136,7 +145,7 @@
             <div class="method-heading">
               <a href="#method-c-new" title="Link to this method">
                 <span class="method-name">new</span>
-                <span class="method-args">(app)</span>
+                <span class="method-args">(options)</span>
               </a>
             </div>
         </div>
@@ -149,28 +158,57 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/bar.rb, line 5</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">app</span>
-  <span class="ruby-keyword">super</span> <span class="ruby-identifier">app</span>
-  <span class="ruby-identifier">set_layer_shell</span>
-
-  <span class="ruby-comment"># box</span>
-  <span class="ruby-identifier">box</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:horizontal</span>
-  <span class="ruby-identifier">box</span>.<span class="ruby-identifier">valign</span> = <span class="ruby-value">:center</span>
-  <span class="ruby-identifier">box</span>.<span class="ruby-identifier">halign</span> = <span class="ruby-value">:center</span>
-  <span class="ruby-identifier">set_child</span> <span class="ruby-identifier">box</span>
-
-  <span class="ruby-comment"># uptime</span>
-  <span class="ruby-identifier">uptime</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">`uptime`</span>)
-  <span class="ruby-identifier">box</span>.<span class="ruby-identifier">append</span> <span class="ruby-identifier">uptime</span>
-
+            <pre><span class="ruby-comment"># File src/widgets/custom.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
+    <span class="ruby-keyword">super</span>
+    <span class="ruby-ivar">@proc</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>]
+    <span class="ruby-ivar">@label</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-identifier">init_timer</span>
+    <span class="ruby-identifier">append</span> <span class="ruby-ivar">@label</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
             <div class="method-calls-super">
               Calls superclass method
-              
+              <a href="Widget.html#method-c-new"><code>Widgets::Widget::new</code></a>
             </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section anchor-link">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-update" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-update" title="Link to this method">
+                <span class="method-name">update</span>
+                <span class="method-args">()</span>
+              </a>
+            </div>
+        </div>
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+
+        <div class="method-description">
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File src/widgets/custom.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
+    <span class="ruby-ivar">@str</span> = <span class="ruby-ivar">@proc</span>.<span class="ruby-identifier">call</span>
+    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-ivar">@str</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
         </div>
 
 

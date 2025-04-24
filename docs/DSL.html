@@ -9,7 +9,7 @@
 
   <meta name="keywords" content="ruby,class,DSL">
 
-    <meta name="description" content="class DSL: The configuration DSL. uptime Using +instance_eval+ the configuration file is executed inside the context of this class.">
+    <meta name="description" content="class DSL: The configuration DSL. notify-send #{@rand}` } do @rand = Random.">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -64,13 +64,33 @@
   </div>
 
   
-  
-  <div id="parent-class-section" class="nav-section">
-  <h3>Ancestors</h3>
-  <ul><li><a href="Object.html">Object</a><ul><li>BasicObject</li></ul></li></ul>
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+
+
+  <ul class="link-list" role="directory">
+              <li>      <a href="#class-DSL-label-Entirely+custom+widgets">Entirely custom widgets</a>
+          <li>      <a href="#class-DSL-label-Styling">Styling</a>
+
+  </ul>
 </div>
 
   
+  <div id="parent-class-section" class="nav-section">
+  <h3>Ancestors</h3>
+  <ul><li>Object</li></ul>
+</div>
+
+  
+<div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+    <li><a class="include" href="Widgets.html">Widgets</a>
+  </ul>
+</div>
+
   
   
   <div class="nav-section">
@@ -117,13 +137,67 @@
 
 <p>Example configuration file:</p>
 
-<pre class="ruby"><span class="ruby-identifier">color</span> <span class="ruby-string">&quot;red&quot;</span>
-<span class="ruby-identifier">widget</span> <span class="ruby-value">:uptime</span>
+<pre class="ruby"><span class="ruby-identifier">widget</span> <span class="ruby-value">:power</span>
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:uptime</span>, <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-identifier">spawn</span> <span class="ruby-string">&quot;alacritty -e htop&amp;&quot;</span> }
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:custom</span>,
+    <span class="ruby-value">interval:</span> <span class="ruby-value">1</span>,
+    <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-node">`notify-send #{@rand}`</span> } <span class="ruby-keyword">do</span>
+    <span class="ruby-ivar">@rand</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">rand</span> <span class="ruby-value">100</span>
+    <span class="ruby-node">&quot;random value &#39;#{@rand}&#39;&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:button</span>,
+    <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-string">`notify-send hi`</span> },
+    <span class="ruby-value">class:</span> <span class="ruby-string">&quot;red&quot;</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-string">&quot;CLICK ME&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:load</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">running</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;tasks: #{running}&quot;</span> <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:load</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">short</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;5m avg: #{short}&quot;</span> <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">class</span> <span class="ruby-constant">Widgets</span><span class="ruby-operator">::</span><span class="ruby-constant">Spinner</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Widgets</span><span class="ruby-operator">::</span><span class="ruby-constant">Widget</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
+        <span class="ruby-keyword">super</span>
+        <span class="ruby-identifier">init_timer</span>
+        <span class="ruby-ivar">@spinner</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Spinner</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">append</span> <span class="ruby-ivar">@spinner</span>
+        <span class="ruby-ivar">@spinner</span>.<span class="ruby-identifier">start</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:spinner</span>
+
+<span class="ruby-identifier">css</span> <span class="ruby-identifier">&lt;&lt;CSS</span>
+<span class="ruby-value">box.red * {
+    color: red;
+}
+</span><span class="ruby-identifier">CSS</span>
 </pre>
 
 <p>Using <code>instance_eval</code> the configuration file is executed inside the context of this class.</p>
 
 <p>Please check the public methods for this class for further documentation.</p>
+
+<h1 id="class-DSL-label-Entirely+custom+widgets">Entirely custom widgets<span><a href="#class-DSL-label-Entirely+custom+widgets">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>If you want a truly custom widget just make one. This code will create a spinner in your bar:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">Widgets</span><span class="ruby-operator">::</span><span class="ruby-constant">Spinner</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Widgets</span><span class="ruby-operator">::</span><span class="ruby-constant">Widget</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
+        <span class="ruby-keyword">super</span>
+        <span class="ruby-identifier">init_timer</span>
+        <span class="ruby-ivar">@spinner</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Spinner</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">append</span> <span class="ruby-ivar">@spinner</span>
+        <span class="ruby-ivar">@spinner</span>.<span class="ruby-identifier">start</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:spinner</span>
+</pre>
+
+<h1 id="class-DSL-label-Styling">Styling<span><a href="#class-DSL-label-Styling">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>See <a href="DSL.html#method-i-css"><code>DSL#css</code></a>.</p>
 
   </section>
 
@@ -174,7 +248,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 16</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">path</span>
   <span class="ruby-ivar">@options</span> = {
     <span class="ruby-value">color:</span> <span class="ruby-string">&quot;white&quot;</span>,
@@ -216,7 +290,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="background-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 34</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">background</span> <span class="ruby-identifier">value</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:background</span>] = <span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>
@@ -247,7 +321,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="color-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 28</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">color</span> <span class="ruby-identifier">value</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:color</span>] = <span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>
@@ -278,17 +352,25 @@
 
         <div class="method-description">
           <div class="method-source-code" id="css-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 47</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">css</span> <span class="ruby-identifier">css</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:css</span>] = <span class="ruby-identifier">css</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
-          <p>Add a Example:</p>
+          <p>Add custom CSS.</p>
+
+<p>This can be combined with the ability to configure a <a href="Widgets/Widget.html"><code>Widgets::Widget</code></a> with a custom name and/or class for setting styles for a specific widget.</p>
+
+<p>All the top-level widgets can be selected as box.barwidget.</p>
+
+<p>Example:</p>
 
 <pre class="ruby"><span class="ruby-identifier">css</span> <span class="ruby-identifier">&lt;&lt;-END</span>
-<span class="ruby-value">   window.background {
-     color: blue;
-     background-color: red;
+<span class="ruby-value">   box.red * {
+     color: red;
+   }
+   box.load#tasks * {
+     color: green;
    }
 </span><span class="ruby-identifier">END</span>
 </pre>
@@ -315,12 +397,16 @@
 
         <div class="method-description">
           <div class="method-source-code" id="spacing-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 55</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">spacing</span> <span class="ruby-identifier">spacing</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:spacing</span>] = <span class="ruby-identifier">spacing</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
+          <p>Set the spacing for the top-level box widget.</p>
+
+<p>All widgets will be spaced this amount apart.</p>
+
+<p>Default is <code>10</code>.</p>
         </div>
 
 
@@ -331,7 +417,7 @@
             <div class="method-heading">
               <a href="#method-i-widget" title="Link to this method">
                 <span class="method-name">widget</span>
-                <span class="method-args">(name, options={})</span>
+                <span class="method-args">(type, options={})</span>
               </a>
             </div>
         </div>
@@ -344,12 +430,12 @@
 
         <div class="method-description">
           <div class="method-source-code" id="widget-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 51</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">widget</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
-  <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">name:</span> <span class="ruby-identifier">name</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-value">proc:</span> <span class="ruby-identifier">block</span>)
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 114</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">widget</span> <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+  <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">type:</span> <span class="ruby-identifier">type</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-value">proc:</span> <span class="ruby-identifier">block</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
-          
+          <p>Configure a <a href="Widgets/Widget.html"><code>Widgets::Widget</code></a> for your bar</p>
         </div>
 
 

@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>class RubyBar::DSL - RDoc Documentation</title>
+<title>class Widgets::Button - RDoc Documentation</title>
 
-  <meta name="keywords" content="ruby,class,RubyBar::DSL">
+  <meta name="keywords" content="ruby,class,Widgets::Button">
 
-    <meta name="description" content="class RubyBar::DSL: The configuration DSL Example configuration file: color &quot;red&quot;">
+    <meta name="description" content="class Widgets::Button: A generic button widget. It currently is exactly like the custom widget but styled as a button.">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -67,7 +67,7 @@
   
   <div id="parent-class-section" class="nav-section">
   <h3>Ancestors</h3>
-  <ul><li>Object</li></ul>
+  <ul><li><a href="Widget.html">Widgets::Widget</a><ul><li>Gtk::Box</li></ul></li></ul>
 </div>
 
   
@@ -76,7 +76,7 @@
   <div class="nav-section">
     <h3>Class Methods</h3>
     <ul class="link-list" role="directory">
-      <li ><a href="#method-c-new">new</a></li>
+      <li class="calls-super" ><a href="#method-c-new">new</a></li>
     </ul>
   </div>
 
@@ -85,8 +85,7 @@
   <div class="nav-section">
     <h3>Instance Methods</h3>
     <ul class="link-list" role="directory">
-      <li ><a href="#method-i-background">background</a></li>
-      <li ><a href="#method-i-color">color</a></li>
+      <li ><a href="#method-i-update">update</a></li>
     </ul>
   </div>
 
@@ -100,38 +99,33 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-RubyBar::DSL">
+<main role="main" aria-labelledby="class-Widgets::Button">
   
   
     <ol role="navigation" aria-label="breadcrumb" class="breadcrumb">
       
       <li>
         
-        <a href="../RubyBar.html">RubyBar</a><span>::</span>
+        <a href="../Widgets.html">Widgets</a><span>::</span>
         
       </li>
       
       <li>
         
-        <span>DSL</span>
+        <span>Button</span>
         
       </li>
       
     </ol>
   
 
-  <h1 id="class-RubyBar::DSL" class="anchor-link class">
-    class RubyBar::DSL
+  <h1 id="class-Widgets::Button" class="anchor-link class">
+    class Widgets::Button
   </h1>
 
   <section class="description">
     
-<p>The configuration <a href="DSL.html"><code>DSL</code></a></p>
-
-<p>Example configuration file:</p>
-
-<pre class="ruby"><span class="ruby-identifier">color</span> <span class="ruby-string">&quot;red&quot;</span>
-</pre>
+<p>A generic button widget. It currently is exactly like the custom widget but styled as a button.</p>
 
   </section>
 
@@ -151,7 +145,7 @@
             <div class="method-heading">
               <a href="#method-c-new" title="Link to this method">
                 <span class="method-name">new</span>
-                <span class="method-args">(path)</span>
+                <span class="method-args">(options)</span>
               </a>
             </div>
         </div>
@@ -164,12 +158,21 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">path</span>
-  <span class="ruby-identifier">instance_eval</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">path</span>), <span class="ruby-identifier">path</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>
+            <pre><span class="ruby-comment"># File src/widgets/button.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
+    <span class="ruby-keyword">super</span>
+    <span class="ruby-ivar">@proc</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>]
+    <span class="ruby-ivar">@button</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">label:</span> <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-identifier">update_safe</span>
+    <span class="ruby-identifier">init_timer</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>]
+    <span class="ruby-identifier">append</span> <span class="ruby-ivar">@button</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Widget.html#method-c-new"><code>Widgets::Widget::new</code></a>
+            </div>
         </div>
 
 
@@ -182,12 +185,12 @@
          <h3>Public Instance Methods</h3>
        </header>
 
-      <div id="method-i-background" class="method-detail anchor-link ">
+      <div id="method-i-update" class="method-detail anchor-link ">
         <div class="method-header">
             <div class="method-heading">
-              <a href="#method-i-background" title="Link to this method">
-                <span class="method-name">background</span>
-                <span class="method-args">(value)</span>
+              <a href="#method-i-update" title="Link to this method">
+                <span class="method-name">update</span>
+                <span class="method-args">()</span>
               </a>
             </div>
         </div>
@@ -199,46 +202,13 @@
           </div>
 
         <div class="method-description">
-          <div class="method-source-code" id="background-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 23</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">background</span> <span class="ruby-identifier">value</span>
-  <span class="ruby-ivar">@background</span> = <span class="ruby-identifier">value</span>
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File src/widgets/button.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
+    <span class="ruby-ivar">@button</span>.<span class="ruby-identifier">set_label</span> <span class="ruby-ivar">@proc</span>.<span class="ruby-identifier">call</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
-          <p>The window background color.</p>
-
-<p>Defaults to <code>&quot;rgba(0, 0, 0, 0.5)&quot;</code>.</p>
-        </div>
-
-
-      </div>
-
-      <div id="method-i-color" class="method-detail anchor-link ">
-        <div class="method-header">
-            <div class="method-heading">
-              <a href="#method-i-color" title="Link to this method">
-                <span class="method-name">color</span>
-                <span class="method-args">(value)</span>
-              </a>
-            </div>
-        </div>
-
-          <div class="method-controls">
-            <details class="method-source-toggle">
-              <summary>Source</summary>
-            </details>
-          </div>
-
-        <div class="method-description">
-          <div class="method-source-code" id="color-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 16</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">color</span> <span class="ruby-identifier">value</span>
-  <span class="ruby-ivar">@color</span> = <span class="ruby-identifier">value</span>
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          <p>The default text color.</p>
-
-<p>Defaults to <code>&quot;white&quot;</code>.</p>
+          
         </div>
 
 

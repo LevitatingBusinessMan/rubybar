@@ -76,7 +76,8 @@
               <summary>      <a href="#label-RubyBar">RubyBar</a>
 </summary>
               <ul class="link-list" role="directory">
-                          <li>      <a href="#label-Development">Development</a>
+                          <li>      <a href="#label-Configuration">Configuration</a>
+          <li>      <a href="#label-Development">Development</a>
 
               </ul>
             </details>
@@ -101,7 +102,7 @@
   <div id="classindex-section" class="nav-section">
   <h3>Class and Module Index</h3>
 
-  <ul class="link-list"><li><code><a href="./App.html">App</a></code></li><li><code><a href="./Bar.html">Bar</a></code></li><li><code><a href="./DSL.html">DSL</a></code></li><li><code><a href="./Object.html">Object</a></code></li><li><code><a href="./String.html">String</a></code></li><li><details><summary><code><a href="./Widgets.html">Widgets</a></code></summary><ul class="link-list"><li><code><a href="./Widgets/Button.html">Button</a></code></li><li><code><a href="./Widgets/Custom.html">Custom</a></code></li><li><code><a href="./Widgets/Power.html">Power</a></code></li><li><code><a href="./Widgets/Uptime.html">Uptime</a></code></li><li><code><a href="./Widgets/Widget.html">Widget</a></code></li></ul></details></li></ul>
+  <ul class="link-list"><li><code><a href="./App.html">App</a></code></li><li><code><a href="./Bar.html">Bar</a></code></li><li><code><a href="./DSL.html">DSL</a></code></li><li><code><a href="./String.html">String</a></code></li><li><details><summary><code><a href="./Widgets.html">Widgets</a></code></summary><ul class="link-list"><li><code><a href="./Widgets/Button.html">Button</a></code></li><li><code><a href="./Widgets/Custom.html">Custom</a></code></li><li><code><a href="./Widgets/Load.html">Load</a></code></li><li><code><a href="./Widgets/Power.html">Power</a></code></li><li><code><a href="./Widgets/Spinner.html">Spinner</a></code></li><li><code><a href="./Widgets/Uptime.html">Uptime</a></code></li><li><code><a href="./Widgets/Widget.html">Widget</a></code></li></ul></details></li></ul>
 </div>
 
 
@@ -120,14 +121,33 @@
 
 <p>A bar for wayland implemented with Ruby and GTK. Configuration is done via a Ruby <a href="DSL.html"><code>DSL</code></a>.</p>
 
+<p>RubyBar is in many ways similar to.</p>
+
 <pre class="ruby"><span class="ruby-identifier">widget</span> <span class="ruby-value">:power</span>
-<span class="ruby-identifier">widget</span> <span class="ruby-value">:uptime</span>
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:uptime</span>, <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-identifier">spawn</span> <span class="ruby-string">&quot;alacritty -e htop&amp;&quot;</span> }
 <span class="ruby-identifier">widget</span> <span class="ruby-value">:custom</span>,
-    <span class="ruby-value">interval:</span> <span class="ruby-value">1</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-node">&quot;random value &#39;#{Random.rand(100)}&#39;&quot;</span>
+    <span class="ruby-value">interval:</span> <span class="ruby-value">1</span>,
+    <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-node">`notify-send #{@rand}`</span> } <span class="ruby-keyword">do</span>
+    <span class="ruby-ivar">@rand</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">rand</span> <span class="ruby-value">100</span>
+    <span class="ruby-node">&quot;random value &#39;#{@rand}&#39;&quot;</span>
 <span class="ruby-keyword">end</span>
-<span class="ruby-identifier">widget</span> <span class="ruby-value">:button</span>, <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-string">`notify-send hi`</span> }, <span class="ruby-value">css:</span> <span class="ruby-string">&quot;button label {color: red;}&quot;</span> <span class="ruby-keyword">do</span> <span class="ruby-string">&quot;CLICK ME&quot;</span> <span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:button</span>,
+    <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-string">`notify-send hi`</span> },
+    <span class="ruby-value">class:</span> <span class="ruby-string">&quot;red&quot;</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-string">&quot;CLICK ME&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">css</span> <span class="ruby-identifier">&lt;&lt;CSS</span>
+<span class="ruby-value">box.red * {
+    color: red;
+}
+</span><span class="ruby-identifier">CSS</span>
 </pre>
+
+<h2 id="label-Configuration">Configuration<span><a href="#label-Configuration">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Configuration is primarily done via the <a href="DSL.html"><code>DSL</code></a>. Please see the <a href="DSL.html"><code>DSL</code></a> documentation for the available methods.</p>
 
 <h2 id="label-Development">Development<span><a href="#label-Development">&para;</a> <a href="#top">&uarr;</a></span></h2>
 

@@ -23,7 +23,7 @@ class Bar < Gtk::ApplicationWindow
       if klass = Widgets::Widget.from_options widget
         box.append klass
       else
-        puts "Unknown widget name #{widget[:name].inspect}"
+        puts "Unknown widget name #{widget[:type].inspect}"
       end
     end
   end

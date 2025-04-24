@@ -5,10 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>README.adoc - RDoc Documentation</title>
+<title>Rakefile - RDoc Documentation</title>
 
-  <meta name="keywords" content="ruby,documentation,README.adoc">
-  <meta name="description" content="README.adoc: RubyBar A bar for wayland implemented with Ruby and GTK. Configuration is done via a Ruby DSL.">
+  <meta name="keywords" content="ruby,documentation,Rakefile">
+  <meta name="description" content="Rakefile: rdoc do system(&quot;rdoc --main=README.">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -70,7 +70,7 @@
   <ul class="link-list">
     <li><a href="./Gemfile.html">Gemfile</a>
     <li><a href="./Gemfile_lock.html">Gemfile.lock</a>
-    <li><a href="./README_adoc.html">README.adoc</a>
+    <li><a href="./README_md.html">README</a>
     <li><a href="./Rakefile.html">Rakefile</a>
     <li><a href="./src/style_css.html">style.css</a>
   </ul>
@@ -85,15 +85,16 @@
 
 </nav>
 
-<main role="main" aria-label="Page README.adoc">
+<main role="main" aria-label="Page Rakefile">
 
-<p># <a href="RubyBar.html"><code>RubyBar</code></a></p>
+<p>task default: %<a href="doc">w</a></p>
 
-<p>A bar for wayland implemented with Ruby and GTK. Configuration is done via a Ruby <a href="DSL.html"><code>DSL</code></a>.</p>
+<p>task doc: :rdoc desc “Generate RDoc documentation” task :rdoc do</p>
 
-<p>## Development Have ‘gtk4_layer_shell` and `gtk4` installed for development.</p>
+<pre class="ruby"><span class="ruby-identifier">system</span>(<span class="ruby-string">&quot;rdoc --main=README.md -o docs&quot;</span>)
+</pre>
 
-<p>“‘SH GTK_DEBUG=interactive ruby src/main.rb “`</p>
+<p>end</p>
 
 </main>
 

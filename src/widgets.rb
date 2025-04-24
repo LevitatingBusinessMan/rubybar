@@ -1,10 +1,10 @@
 require "gtk4"
 
-DEFAULT_INTERVAL = 5
-
 # Base Widget class.
 # Defines some common behavior across top level widgets in the bar.
 module Widgets
+    DEFAULT_INTERVAL = 5
+
     class Widget < Gtk::Box
         # Interval with which to update this widget
         attr_accessor :interval
@@ -17,8 +17,8 @@ module Widgets
 			@interval = options[:interval] || DEFAULT_INTERVAL
             super :horizontal, @options[:padding] || 0
             add_css_class "barwidget"
-			@css = Gtk::CssProvider.new
-            style_context.add_provider(@css, Gtk::StyleProvider::PRIORITY_USER)
+            add_css_class @options[:class] if @options[:class]
+            self.name = @options[:name] if @options[:name]
             
             @click_controller = Gtk::GestureClick.new
             @click_controller.button = Gdk::BUTTON_PRIMARY
@@ -44,13 +44,6 @@ module Widgets
 			update
 			# no error handling yet whoops
 		end
-    
-        # Update the CSS for this widget
-		# doesn't work yet?
-        def css css
-			@css.load_from_data css
-			#style_context.add_provider(@css, Gtk::StyleProvider::PRIORITY_USER)
-        end
 
 		private
 		def init_timer
@@ -66,11 +59,11 @@ module Widgets
 
         # Create a Widgets::Widget from a hash with options
         def self.from_options widget
-            class_name = widget[:name].to_s.camelize
+            class_name = widget[:type].to_s.camelize
             if Widgets.const_defined? class_name
               klass = Widgets.const_get class_name
 			  kwidget = klass.new widget
-			  kwidget.css widget[:css] if widget.include? :css
+			  kwidget.add_css_class widget[:type]
               return kwidget
             end
         end
@@ -82,3 +75,4 @@ require_relative "widgets/uptime"
 require_relative "widgets/custom"
 require_relative "widgets/button"
 require_relative "widgets/power"
+require_relative "widgets/load"

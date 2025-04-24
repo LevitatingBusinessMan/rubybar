@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>class Widgets::Custom - RDoc Documentation</title>
+<title>class Widgets::Load - RDoc Documentation</title>
 
-  <meta name="keywords" content="ruby,class,Widgets::Custom">
+  <meta name="keywords" content="ruby,class,Widgets::Load">
 
-    <meta name="description" content="class Widgets::Custom: A custom widget that executs a proc">
+    <meta name="description" content="class Widgets::Load: loadavg. Such values read like +1.">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -99,7 +99,7 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-Widgets::Custom">
+<main role="main" aria-labelledby="class-Widgets::Load">
   
   
     <ol role="navigation" aria-label="breadcrumb" class="breadcrumb">
@@ -112,20 +112,43 @@
       
       <li>
         
-        <span>Custom</span>
+        <span>Load</span>
         
       </li>
       
     </ol>
   
 
-  <h1 id="class-Widgets::Custom" class="anchor-link class">
-    class Widgets::Custom
+  <h1 id="class-Widgets::Load" class="anchor-link class">
+    class Widgets::Load
   </h1>
 
   <section class="description">
     
-<p>A custom widget that executs a proc</p>
+<p>The <a href="Load.html"><code>Load</code></a> widget reads /proc/loadavg.</p>
+
+<p>Such values read like +1.28 1.18 0.92 1/2076 771310+.</p>
+
+<p>Where the first 3 values are the 5, 10 and 15m average loads.</p>
+
+<p>The fourth value is the running and total tasks (separated by a slash).</p>
+
+<p>The last value is the last pid.</p>
+
+<p>By default the load widget formats these as +“load: #{@short} #{@mid} #{@long}”+.</p>
+
+<p>However, when a block is given it is executed with all parameters.</p>
+
+<p>It is executed like</p>
+
+<pre class="ruby"><span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>].<span class="ruby-identifier">call</span> <span class="ruby-ivar">@short</span>, <span class="ruby-ivar">@mid</span>, <span class="ruby-ivar">@long</span>, <span class="ruby-ivar">@running</span>, <span class="ruby-ivar">@tasks</span>, <span class="ruby-ivar">@last_pid</span>
+</pre>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">widget</span> <span class="ruby-value">:load</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">short</span>, <span class="ruby-identifier">mid</span>, <span class="ruby-identifier">long</span>, <span class="ruby-identifier">running</span>, <span class="ruby-identifier">tasks</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;tasks: #{running}/#{tasks}&quot;</span> <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:load</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">short</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;5m avg: #{short}&quot;</span> <span class="ruby-keyword">end</span>
+</pre>
 
   </section>
 
@@ -158,10 +181,10 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets/custom.rb, line 6</span>
+            <pre><span class="ruby-comment"># File src/widgets/load.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
-    <span class="ruby-ivar">@proc</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>]
     <span class="ruby-keyword">super</span>
+    <span class="ruby-ivar">@proc</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>]
     <span class="ruby-ivar">@label</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-identifier">init_timer</span>
     <span class="ruby-identifier">append</span> <span class="ruby-ivar">@label</span>
@@ -202,10 +225,18 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets/custom.rb, line 13</span>
+            <pre><span class="ruby-comment"># File src/widgets/load.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-    <span class="ruby-ivar">@str</span> = <span class="ruby-ivar">@proc</span>.<span class="ruby-identifier">call</span>
-    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-ivar">@str</span>
+    <span class="ruby-ivar">@short</span>, <span class="ruby-ivar">@mid</span>, <span class="ruby-ivar">@long</span>, <span class="ruby-identifier">tasks</span>, <span class="ruby-ivar">@last_pid</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&quot;/proc/loadavg&quot;</span>).<span class="ruby-identifier">split</span>
+    <span class="ruby-ivar">@running</span>, <span class="ruby-ivar">@tasks</span> = <span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;/&#39;</span>)
+    
+    <span class="ruby-identifier">str</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>]
+        <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>].<span class="ruby-identifier">call</span> <span class="ruby-ivar">@short</span>, <span class="ruby-ivar">@mid</span>, <span class="ruby-ivar">@long</span>, <span class="ruby-ivar">@running</span>, <span class="ruby-ivar">@tasks</span>, <span class="ruby-ivar">@last_pid</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-node">&quot;load: #{@short} #{@mid} #{@long}&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-identifier">str</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

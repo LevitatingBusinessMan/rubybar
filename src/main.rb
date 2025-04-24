@@ -1,3 +1,5 @@
+require "gtk4_layer_shell/preload"
+require "gtk4"
 require "optparse"
 require "xdg"
 require_relative "dsl"
@@ -48,8 +50,6 @@ if args[:debug]
   ENV["GTK_DEBUG"] = "interactive"
 end
 
-require "gtk4_layer_shell/preload"
-require "gtk4"
 require_relative "app"
 require_relative "bar"
 

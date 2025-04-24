@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>class Widgets::Button - RDoc Documentation</title>
+<title>class Widgets::Uptime - RDoc Documentation</title>
 
-  <meta name="keywords" content="ruby,class,Widgets::Button">
+  <meta name="keywords" content="ruby,class,Widgets::Uptime">
 
-    <meta name="description" content="class Widgets::Button: [on_click:] Block to execute when clicked">
+    <meta name="description" content="class Widgets::Uptime: A widget that executes `uptime`">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -99,7 +99,7 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-Widgets::Button">
+<main role="main" aria-labelledby="class-Widgets::Uptime">
   
   
     <ol role="navigation" aria-label="breadcrumb" class="breadcrumb">
@@ -112,22 +112,20 @@
       
       <li>
         
-        <span>Button</span>
+        <span>Uptime</span>
         
       </li>
       
     </ol>
   
 
-  <h1 id="class-Widgets::Button" class="anchor-link class">
-    class Widgets::Button
+  <h1 id="class-Widgets::Uptime" class="anchor-link class">
+    class Widgets::Uptime
   </h1>
 
   <section class="description">
-    <dl class="rdoc-list label-list"><dt>on_click:</dt>
-<dd>
-<p>Block to execute when clicked</p>
-</dd></dl>
+    
+<p>A widget that executes ‘uptime`</p>
 
   </section>
 
@@ -160,18 +158,13 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets/button.rb, line 9</span>
+            <pre><span class="ruby-comment"># File src/widgets/uptime.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
-    <span class="ruby-ivar">@proc</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>]
-    <span class="ruby-ivar">@button</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">label:</span> <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>] = <span class="ruby-value">1</span>
     <span class="ruby-keyword">super</span>
-    <span class="ruby-identifier">update_safe</span>
-    <span class="ruby-identifier">init_timer</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>]
-    <span class="ruby-identifier">append</span> <span class="ruby-ivar">@button</span>
-
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">:on_click</span>
-        <span class="ruby-ivar">@button</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&quot;clicked&quot;</span>) { <span class="ruby-identifier">options</span>[<span class="ruby-value">:on_click</span>].<span class="ruby-identifier">call</span> }
-    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@label</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;&#39;</span>
+    <span class="ruby-identifier">init_timer</span>
+    <span class="ruby-identifier">append</span> <span class="ruby-ivar">@label</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -209,9 +202,9 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets/button.rb, line 21</span>
+            <pre><span class="ruby-comment"># File src/widgets/uptime.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-    <span class="ruby-ivar">@button</span>.<span class="ruby-identifier">set_label</span> <span class="ruby-ivar">@proc</span>.<span class="ruby-identifier">call</span>
+    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-string">`uptime`</span>.<span class="ruby-identifier">chomp</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

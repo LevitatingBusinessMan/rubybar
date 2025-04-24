@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>class BarWidget - RDoc Documentation</title>
+<title>class String - RDoc Documentation</title>
 
-  <meta name="keywords" content="ruby,class,BarWidget">
+  <meta name="keywords" content="ruby,class,String">
 
-    <meta name="description" content="Documentation for the BarWidget class">
+    <meta name="description" content="Documentation for the String class">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -67,25 +67,18 @@
   
   <div id="parent-class-section" class="nav-section">
   <h3>Ancestors</h3>
-  <ul><li>Gtk::Widget</li></ul>
+  <ul><li>Object</li></ul>
 </div>
 
   
   
   
-  <div class="nav-section">
-    <h3>Class Methods</h3>
-    <ul class="link-list" role="directory">
-      <li class="calls-super" ><a href="#method-c-new">new</a></li>
-    </ul>
-  </div>
-
 
 
   <div class="nav-section">
     <h3>Instance Methods</h3>
     <ul class="link-list" role="directory">
-      <li ><a href="#method-i-update">update</a></li>
+      <li ><a href="#method-i-camelize">camelize</a></li>
     </ul>
   </div>
 
@@ -99,12 +92,12 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-BarWidget">
+<main role="main" aria-labelledby="class-String">
   
   
 
-  <h1 id="class-BarWidget" class="anchor-link class">
-    class BarWidget
+  <h1 id="class-String" class="anchor-link class">
+    class String
   </h1>
 
   <section class="description">
@@ -115,76 +108,18 @@
 
 
 
-    <section class="attribute-method-details" class="method-section">
-      <header>
-        <h3>Attributes</h3>
-      </header>
 
-      <div id="attribute-i-interval" class="method-detail anchor-link">
-        <div class="method-heading attribute-method-heading">
-          <a href="#attribute-i-interval" title="Link to this attribute">
-            <span class="method-name">interval</span>
-            <span class="attribute-access-type">[RW]</span>
-          </a>
-        </div>
-
-        <div class="method-description">
-        <p>Interval with which to update this widget</p>
-        </div>
-      </div>
-    </section>
-
-
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section anchor-link">
-       <header>
-         <h3>Public Class Methods</h3>
-       </header>
-
-      <div id="method-c-new" class="method-detail anchor-link ">
-        <div class="method-header">
-            <div class="method-heading">
-              <a href="#method-c-new" title="Link to this method">
-                <span class="method-name">new</span>
-                <span class="method-args">()</span>
-              </a>
-            </div>
-        </div>
-
-          <div class="method-controls">
-            <details class="method-source-toggle">
-              <summary>Source</summary>
-            </details>
-          </div>
-
-        <div class="method-description">
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets/widget.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>
-    <span class="ruby-keyword">super</span>()
-<span class="ruby-keyword">end</span></pre>
-          </div>
-          
-            <div class="method-calls-super">
-              Calls superclass method
-              
-            </div>
-        </div>
-
-
-      </div>
-
-    </section>
 
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section anchor-link">
        <header>
          <h3>Public Instance Methods</h3>
        </header>
 
-      <div id="method-i-update" class="method-detail anchor-link ">
+      <div id="method-i-camelize" class="method-detail anchor-link ">
         <div class="method-header">
             <div class="method-heading">
-              <a href="#method-i-update" title="Link to this method">
-                <span class="method-name">update</span>
+              <a href="#method-i-camelize" title="Link to this method">
+                <span class="method-name">camelize</span>
                 <span class="method-args">()</span>
               </a>
             </div>
@@ -197,13 +132,13 @@
           </div>
 
         <div class="method-description">
-          <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets/widget.rb, line 12</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-    <span class="ruby-comment"># nothing</span>
+          <div class="method-source-code" id="camelize-source">
+            <pre><span class="ruby-comment"># File src/util.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">camelize</span>
+  <span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;_&#39;</span>).<span class="ruby-identifier">collect</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:capitalize</span>).<span class="ruby-identifier">join</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
-          <p>Update method for this widget</p>
+          
         </div>
 
 
