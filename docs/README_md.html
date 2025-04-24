@@ -108,7 +108,9 @@
 
 <p>A bar for wayland implemented with Ruby and GTK. Configuration is done via a Ruby <a href="DSL.html"><code>DSL</code></a>.</p>
 
-<p>RubyBar is in many ways similar to.</p>
+<p>RubyBar is in many ways similar to Waybar.<br> Both RubyBar and Waybar are <code>gtk4</code> applications using <code>gtk4-layer-shell</code>. However where Waybar requires static json-like configuration files RubyBar uses a pure-ruby <a href="DSL.html"><code>DSL</code></a>. The <a href="DSL.html"><code>DSL</code></a> allows you to configure your bar programmatically.</p>
+
+<p>You can even code your own widgets.</p>
 
 <pre class="ruby"><span class="ruby-identifier">widget</span> <span class="ruby-value">:power</span>
 <span class="ruby-identifier">widget</span> <span class="ruby-value">:uptime</span>, <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-identifier">spawn</span> <span class="ruby-string">&quot;alacritty -e htop&amp;&quot;</span> }

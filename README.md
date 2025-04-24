@@ -3,7 +3,12 @@
 A bar for wayland implemented with Ruby and GTK.
 Configuration is done via a Ruby DSL.
 
-RubyBar is in many ways similar to.
+RubyBar is in many ways similar to Waybar.  
+Both RubyBar and Waybar are `gtk4` applications using `gtk4-layer-shell`.
+However where Waybar requires static json-like configuration files RubyBar uses a pure-ruby DSL.
+The DSL allows you to configure your bar programmatically.
+
+You can even code your own widgets.
 
 ```RUBY
 widget :power
