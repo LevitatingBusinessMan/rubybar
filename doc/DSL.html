@@ -9,7 +9,7 @@
 
   <meta name="keywords" content="ruby,class,DSL">
 
-    <meta name="description" content="class DSL: The configuration DSL. color &quot;red&quot; Using +instance_eval+ the configuration file is executed inside the context of this class.">
+    <meta name="description" content="class DSL: The configuration DSL. uptime Using +instance_eval+ the configuration file is executed inside the context of this class.">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -88,6 +88,7 @@
       <li ><a href="#method-i-background">background</a></li>
       <li ><a href="#method-i-color">color</a></li>
       <li ><a href="#method-i-css">css</a></li>
+      <li ><a href="#method-i-widget">widget</a></li>
     </ul>
   </div>
 
@@ -116,6 +117,7 @@
 <p>Example configuration file:</p>
 
 <pre class="ruby"><span class="ruby-identifier">color</span> <span class="ruby-string">&quot;red&quot;</span>
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:uptime</span>
 </pre>
 
 <p>Using <code>instance_eval</code> the configuration file is executed inside the context of this class.</p>
@@ -171,12 +173,13 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 15</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">path</span>
   <span class="ruby-ivar">@options</span> = {
     <span class="ruby-value">color:</span> <span class="ruby-string">&quot;white&quot;</span>,
     <span class="ruby-value">background:</span> <span class="ruby-string">&quot;rgba(0, 0, 0, 0.5)&quot;</span>,
     <span class="ruby-value">css:</span> <span class="ruby-string">&quot;&quot;</span>,
+    <span class="ruby-value">widgets:</span> []
   }
   <span class="ruby-identifier">instance_eval</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">path</span>), <span class="ruby-identifier">path</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>
 <span class="ruby-keyword">end</span></pre>
@@ -212,7 +215,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="background-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 32</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">background</span> <span class="ruby-identifier">value</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:background</span>] = <span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>
@@ -243,7 +246,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="color-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 26</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">color</span> <span class="ruby-identifier">value</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:color</span>] = <span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>
@@ -274,7 +277,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="css-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 45</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">css</span> <span class="ruby-identifier">css</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:css</span>] = <span class="ruby-identifier">css</span>
 <span class="ruby-keyword">end</span></pre>
@@ -288,6 +291,35 @@
    }
 </span><span class="ruby-identifier">END</span>
 </pre>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-widget" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-widget" title="Link to this method">
+                <span class="method-name">widget</span>
+                <span class="method-args">(name, options={})</span>
+              </a>
+            </div>
+        </div>
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+
+        <div class="method-description">
+          <div class="method-source-code" id="widget-source">
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">widget</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+  <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">name:</span> <span class="ruby-identifier">name</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-value">proc:</span> <span class="ruby-identifier">block</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
         </div>
 
 

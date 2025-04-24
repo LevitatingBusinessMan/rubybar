@@ -48,8 +48,8 @@ class DSL
     @options[:css] = css
   end
 
-  def widget name
-    @options[:widgets] << {name: name}
+  def widget name, options={}, &block
+    @options[:widgets] << {name: name}.merge(options).merge(proc: block)
   end
 
 end

@@ -1,14 +1,15 @@
 require "gtk4"
 require_relative "../widgets"
 
-# A widget that executes `uptime`
-class Widgets::Uptime < Widgets::Widget
+# A custom widget that executs a proc
+class Widgets::Custom < Widgets::Widget
     def initialize options
+        @proc = options[:proc]
         super
         @label = Gtk::Label.new @str
         append @label
     end
     def update
-        @str = `uptime`.chomp
+        @str = @proc.call
     end
 end

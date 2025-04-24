@@ -135,7 +135,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/bar.rb, line 6</span>
+            <pre><span class="ruby-comment"># File src/bar.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">app</span>
   <span class="ruby-keyword">super</span> <span class="ruby-identifier">app</span>
 
@@ -145,12 +145,24 @@
   <span class="ruby-identifier">box</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:horizontal</span>
   <span class="ruby-identifier">box</span>.<span class="ruby-identifier">valign</span> = <span class="ruby-value">:center</span>
   <span class="ruby-identifier">box</span>.<span class="ruby-identifier">halign</span> = <span class="ruby-value">:center</span>
+  <span class="ruby-identifier">box</span>.<span class="ruby-identifier">spacing</span> = <span class="ruby-value">10</span>
   <span class="ruby-identifier">set_child</span> <span class="ruby-identifier">box</span>
 
-  <span class="ruby-comment"># uptime</span>
-  <span class="ruby-identifier">uptime</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">`uptime`</span>)
-  <span class="ruby-identifier">box</span>.<span class="ruby-identifier">append</span> <span class="ruby-identifier">uptime</span>
-
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">widget</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">app</span>.<span class="ruby-identifier">options</span>[<span class="ruby-value">:widgets</span>]
+    <span class="ruby-identifier">pp</span> <span class="ruby-identifier">widget</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">app</span>.<span class="ruby-identifier">options</span>[<span class="ruby-value">:verbose</span>]
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">widget</span>[<span class="ruby-value">:name</span>]
+    <span class="ruby-keyword">when</span> <span class="ruby-value">:custom</span>
+      <span class="ruby-identifier">box</span>.<span class="ruby-identifier">append</span> <span class="ruby-constant">Widgets</span><span class="ruby-operator">::</span><span class="ruby-constant">Custom</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">widget</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">class_name</span> = <span class="ruby-identifier">widget</span>[<span class="ruby-value">:name</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-constant">Widgets</span>.<span class="ruby-identifier">const_defined?</span> <span class="ruby-identifier">class_name</span>
+        <span class="ruby-identifier">klass</span> = <span class="ruby-constant">Widgets</span>.<span class="ruby-identifier">const_get</span> <span class="ruby-identifier">class_name</span>
+        <span class="ruby-identifier">box</span>.<span class="ruby-identifier">append</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">widget</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Unknown widget name #{widget[:name].inspect}&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

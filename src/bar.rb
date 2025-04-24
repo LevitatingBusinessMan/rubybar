@@ -1,6 +1,7 @@
 require "gtk4_layer_shell"
 require "gtk4"
 require_relative "widgets"
+require_relative "util"
 
 # The Application Window
 class Bar < Gtk::ApplicationWindow
@@ -13,19 +14,27 @@ class Bar < Gtk::ApplicationWindow
     box = Gtk::Box.new :horizontal
     box.valign = :center
     box.halign = :center
+    box.spacing = 10
     set_child box
 
     for widget in app.options[:widgets]
-      if widget[:name] == :uptime
-        box.append Widgets::Uptime.new
+      pp widget if app.options[:verbose]
+      case widget[:name]
+      when :custom
+        box.append Widgets::Custom.new widget
+      else
+        class_name = widget[:name].to_s.camelize
+        if Widgets.const_defined? class_name
+          klass = Widgets.const_get class_name
+          box.append klass.new widget
+        else
+          puts "Unknown widget name #{widget[:name].inspect}"
+        end
       end
     end
-  
-    # uptime
-    uptime = Gtk::Label.new(`uptime`)
-    box.append uptime
-  
   end
+
+
 
   private
   def set_layer_shell
