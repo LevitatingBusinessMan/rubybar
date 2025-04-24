@@ -8,7 +8,7 @@
 <title>Rakefile - RDoc Documentation</title>
 
   <meta name="keywords" content="ruby,documentation,Rakefile">
-  <meta name="description" content="Rakefile: rdoc do system(&quot;rdoc --main=README.">
+  <meta name="description" content="Rakefile: Task. new do |doc| doc.">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -87,11 +87,12 @@
 
 <main role="main" aria-label="Page Rakefile">
 
-<p>task default: %<a href="doc">w</a></p>
+<p>task default: %<a href="rdoc">w</a></p>
 
-<p>task doc: :rdoc desc “Generate RDoc documentation” task :rdoc do</p>
+<p>require “rdoc/task” RDoc::Task.new do |doc|</p>
 
-<pre class="ruby"><span class="ruby-identifier">system</span>(<span class="ruby-string">&quot;rdoc --main=README.md -o docs&quot;</span>)
+<pre class="ruby"><span class="ruby-identifier">doc</span>.<span class="ruby-identifier">main</span> = <span class="ruby-string">&quot;README.md&quot;</span>
+<span class="ruby-identifier">doc</span>.<span class="ruby-identifier">rdoc_dir</span> = <span class="ruby-string">&quot;docs&quot;</span>
 </pre>
 
 <p>end</p>
