@@ -33,6 +33,7 @@ GEM
       gdk4 (= 4.2.9)
     gtk4_layer_shell (1.0.0)
     json (2.10.2)
+    logger (1.7.0)
     matrix (0.4.2)
     native-package-installer (1.1.9)
     pango (4.2.9)
@@ -47,6 +48,10 @@ GEM
     red-colors (0.4.0)
       json
       matrix
+    rexml (3.4.1)
+    ruby-dbus (0.25.0)
+      logger
+      rexml
     stringio (3.1.7)
     sys-cpu (1.1.0)
       ffi (~> 1.1)
@@ -60,6 +65,7 @@ DEPENDENCIES
   gtk4 (~> 4.2)
   gtk4_layer_shell (~> 1.0)
   rdoc (~> 6.13)
+  ruby-dbus (~> 0.25.0)
   sys-cpu (~> 1.1)
   xdg (~> 9.2)
 

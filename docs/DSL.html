@@ -71,7 +71,16 @@
 
   <ul class="link-list" role="directory">
               <li>      <a href="#class-DSL-label-Entirely+custom+widgets">Entirely custom widgets</a>
-          <li>      <a href="#class-DSL-label-Styling">Styling</a>
+          <li>
+            <details open>
+              <summary>      <a href="#class-DSL-label-Styling">Styling</a>
+</summary>
+              <ul class="link-list" role="directory">
+                          <li>      <a href="#class-DSL-label-Some+implementation+details">Some implementation details</a>
+
+              </ul>
+            </details>
+          </li>
 
   </ul>
 </div>
@@ -108,6 +117,7 @@
       <li ><a href="#method-i-background">background</a></li>
       <li ><a href="#method-i-color">color</a></li>
       <li ><a href="#method-i-css">css</a></li>
+      <li ><a href="#method-i-separated">separated</a></li>
       <li ><a href="#method-i-spacing">spacing</a></li>
       <li ><a href="#method-i-widget">widget</a></li>
     </ul>
@@ -199,6 +209,14 @@
 
 <p>See <a href="DSL.html#method-i-css"><code>DSL#css</code></a>.</p>
 
+<h3 id="class-DSL-label-Some+implementation+details">Some implementation details<span><a href="#class-DSL-label-Some+implementation+details">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The <a href="DSL.html"><code>DSL</code></a> produces a hash in <a href="DSL.html#attribute-i-options"><code>DSL#options</code></a>.</p>
+
+<p>This hash is then used to configure the bar. This hash is printed when rubybar is run in verbose mode.</p>
+
+<p>The <a href="DSL.html#method-i-widget"><code>DSL#widget</code></a> method also creates a hash that can then be used by <a href="Widgets/Widget.html#method-c-from_options"><code>Widgets::Widget::from_options</code></a> to build a <a href="Widgets/Widget.html"><code>Widgets::Widget</code></a>.</p>
+
   </section>
 
   <section id="5Buntitled-5D" class="documentation-section anchor-link">
@@ -248,7 +266,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 70</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">path</span>
   <span class="ruby-ivar">@options</span> = {
     <span class="ruby-value">color:</span> <span class="ruby-string">&quot;white&quot;</span>,
@@ -290,7 +308,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="background-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 88</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">background</span> <span class="ruby-identifier">value</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:background</span>] = <span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>
@@ -321,7 +339,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="color-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 82</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">color</span> <span class="ruby-identifier">value</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:color</span>] = <span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>
@@ -352,7 +370,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="css-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 109</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">css</span> <span class="ruby-identifier">css</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:css</span>] = <span class="ruby-identifier">css</span>
 <span class="ruby-keyword">end</span></pre>
@@ -379,6 +397,53 @@
 
       </div>
 
+      <div id="method-i-separated" class="method-detail anchor-link ">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-separated" title="Link to this method">
+                <span class="method-name">separated</span>
+                <span class="method-args">() { || ... }</span>
+              </a>
+            </div>
+        </div>
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+
+        <div class="method-description">
+          <div class="method-source-code" id="separated-source">
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 150</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">separated</span>
+  <span class="ruby-ivar">@separating</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-ivar">@separating_first_passed</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">yield</span>
+  <span class="ruby-ivar">@separating</span> = <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          <p>Place a <a href="Widgets/Separator.html"><code>Widgets::Separator</code></a> between all widgets</p>
+
+<pre class="ruby"><span class="ruby-identifier">separated</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">widget</span> <span class="ruby-value">:button</span>, <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> {} <span class="ruby-keyword">do</span> <span class="ruby-string">&quot;clicky click&quot;</span> <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">widget</span> <span class="ruby-value">:load</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">running</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;tasks: #{running}&quot;</span> <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">widget</span> <span class="ruby-value">:load</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">short</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;5m avg: #{short}&quot;</span> <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>This doesn’t stack.</p>
+
+<p>In the future this will take an options hash which gets applied to the seprator widgets.</p>
+
+<p>Just in case some crazy person wants to make all his separators clickable or something.</p>
+
+<p>I don’t know what people are out there.</p>
+        </div>
+
+
+      </div>
+
       <div id="method-i-spacing" class="method-detail anchor-link ">
         <div class="method-header">
             <div class="method-heading">
@@ -397,7 +462,7 @@
 
         <div class="method-description">
           <div class="method-source-code" id="spacing-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 121</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 134</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">spacing</span> <span class="ruby-identifier">spacing</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:spacing</span>] = <span class="ruby-identifier">spacing</span>
 <span class="ruby-keyword">end</span></pre>
@@ -430,12 +495,18 @@
 
         <div class="method-description">
           <div class="method-source-code" id="widget-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 114</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">widget</span> <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
-  <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">type:</span> <span class="ruby-identifier">type</span>}.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-value">proc:</span> <span class="ruby-identifier">block</span>)
+  <span class="ruby-comment"># optionally place a separator</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@separating</span>
+    <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-value">type:</span> <span class="ruby-value">:separator</span>} <span class="ruby-keyword">if</span> <span class="ruby-ivar">@separating_first_passed</span>
+    <span class="ruby-ivar">@separating_first_passed</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-value">type:</span> <span class="ruby-identifier">type</span>, <span class="ruby-value">proc:</span> <span class="ruby-identifier">block</span>})
 <span class="ruby-keyword">end</span></pre>
           </div>
-          <p>Configure a <a href="Widgets/Widget.html"><code>Widgets::Widget</code></a> for your bar</p>
+          <p>Configure a <a href="Widgets/Widget.html"><code>Widgets::Widget</code></a> for your bar.</p>
         </div>
 
 

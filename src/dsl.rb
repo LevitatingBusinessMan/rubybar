@@ -62,6 +62,13 @@ This code will create a spinner in your bar:
 = Styling
 See DSL#css.
 
+=== Some implementation details
+The DSL produces a hash in DSL#options.  
+This hash is then used to configure the bar.
+This hash is printed when rubybar is run in verbose mode.
+
+The DSL#widget method also creates a hash that can then be used by Widgets::Widget::from_options to build a Widgets::Widget.
+
 =end
 class DSL
   include Widgets
@@ -110,9 +117,15 @@ class DSL
     @options[:css] = css
   end
 
-  # Configure a Widgets::Widget for your bar
+  # Configure a Widgets::Widget for your bar.
   def widget type, options={}, &block
-    @options[:widgets] << {type: type}.merge(options).merge(proc: block)
+    # optionally place a separator
+    if @separating
+      @options[:widgets] << {type: :separator} if @separating_first_passed
+      @separating_first_passed = true
+    end
+
+    @options[:widgets] << options.merge({type: type, proc: block})
   end
 
   # Set the spacing for the top-level box widget.  
@@ -120,6 +133,25 @@ class DSL
   # Default is +10+.
   def spacing spacing
     @options[:spacing] = spacing
+  end
+
+  # Place a Widgets::Separator between all widgets
+  #  separated do
+  #    widget :button, on_click: -> {} do "clicky click" end
+  #    widget :load do |_, _, _, running| "tasks: #{running}" end
+  #    widget :load do |short| "5m avg: #{short}" end
+  #  end
+  #
+  # This doesn't stack.
+  #
+  # In the future this will take an options hash which gets applied to the seprator widgets.  
+  # Just in case some crazy person wants to make all his separators clickable or something.  
+  # I don't know what people are out there.
+  def separated
+    @separating = true
+    @separating_first_passed = false
+    yield
+    @separating = false
   end
 
 end

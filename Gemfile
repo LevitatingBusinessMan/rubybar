@@ -11,3 +11,5 @@ gem "xdg", "~> 9.2"
 gem "rdoc", "~> 6.13", group: :development
 
 gem "sys-cpu", "~> 1.1"
+
+gem "ruby-dbus", "~> 0.25.0"

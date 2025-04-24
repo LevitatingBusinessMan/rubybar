@@ -11,6 +11,8 @@ class App < Gtk::Application
   end
 
   private
+
+  # Setup the style context
   def apply_css
     provider = Gtk::CssProvider.new
     css_path = File.join(File.dirname(__FILE__), 'style.css')
