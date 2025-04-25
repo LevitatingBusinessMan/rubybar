@@ -26,6 +26,8 @@ widget :button,
         "CLICK ME"
 end
 
+widget :systemd, user: true, service: "gammastep.service"
+
 css <<CSS
 box.red * {
     color: red;
