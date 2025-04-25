@@ -8,7 +8,7 @@ Where the first 3 values are the 5, 10 and 15m average loads.
 The fourth value is the running and total tasks (separated by a slash).  
 The last value is the last pid.
 
-By default the load widget formats these as +"load: #{@short} #{@mid} #{@long}"+.  
+By default the load widget formats these as +"load avg: #{@short} #{@mid} #{@long}"+.  
 However, when a block is given it is executed with all parameters.
 
 It is executed like
@@ -34,7 +34,7 @@ class Widgets::Load < Widgets::Widget
         str = if options[:proc]
             options[:proc].call @short, @mid, @long, @running, @tasks, @last_pid
         else
-            "load: #{@short} #{@mid} #{@long}"
+            "load avg: #{@short} #{@mid} #{@long}"
         end
 
         @label.set_text str

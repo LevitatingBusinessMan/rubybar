@@ -81,6 +81,7 @@ class DSL
       css: "",
       widgets: []
     }
+    @separating = []
     instance_eval(File.read(path), path) if path
   end
 
@@ -120,9 +121,8 @@ class DSL
   # Configure a Widgets::Widget for your bar.
   def widget type, options={}, &block
     # optionally place a separator
-    if @separating
-      @options[:widgets] << {type: :separator} if @separating_first_passed
-      @separating_first_passed = true
+    unless @separating.empty?
+      @options[:widgets] << @separating.last.merge({type: :separator})
     end
 
     @options[:widgets] << options.merge({type: type, proc: block})
@@ -144,14 +144,13 @@ class DSL
   #
   # This doesn't stack.
   #
-  # In the future this will take an options hash which gets applied to the seprator widgets.  
+  # You can also set standard widget options for the separators.  
   # Just in case some crazy person wants to make all his separators clickable or something.  
   # I don't know what people are out there.
-  def separated
-    @separating = true
-    @separating_first_passed = false
+  def separated options={}
+    @separating << options
     yield
-    @separating = false
+    @separating.pop
   end
 
 end
