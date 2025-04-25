@@ -73,9 +73,8 @@ class Widgets::Systemd < Widgets::Widget
         manager.default_iface = "org.freedesktop.systemd1.Manager"
 
         manager = self.get_manager user
-        manager.LoadUnit(unit_name)
 
-        unit = systemd.object(manager.GetUnit(unit_name).first)
+        unit = systemd.object(manager.LoadUnit(unit_name).first)
         unit.introspect
 
         unit["org.freedesktop.systemd1.Unit"]
