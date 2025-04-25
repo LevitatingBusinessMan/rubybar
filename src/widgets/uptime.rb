@@ -4,7 +4,7 @@ require_relative "../widgets"
 # A widget that executes `uptime`
 class Widgets::Uptime < Widgets::Widget
     def initialize options
-        options[:interval] = 1
+        options[:interval] ||= 1
         super
         @label = Gtk::Label.new ''
         init_timer

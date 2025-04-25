@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>class Widgets::Uptime - RDoc Documentation</title>
+<title>class Widgets::Time - RDoc Documentation</title>
 
-  <meta name="keywords" content="ruby,class,Widgets::Uptime">
+  <meta name="keywords" content="ruby,class,Widgets::Time">
 
-    <meta name="description" content="class Widgets::Uptime: A widget that executes `uptime`">
+    <meta name="description" content="class Widgets::Time: A time widget. Takes a Time#strftime format string.">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -99,7 +99,7 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-Widgets::Uptime">
+<main role="main" aria-labelledby="class-Widgets::Time">
   
   
     <ol role="navigation" aria-label="breadcrumb" class="breadcrumb">
@@ -112,20 +112,24 @@
       
       <li>
         
-        <span>Uptime</span>
+        <span>Time</span>
         
       </li>
       
     </ol>
   
 
-  <h1 id="class-Widgets::Uptime" class="anchor-link class">
-    class Widgets::Uptime
+  <h1 id="class-Widgets::Time" class="anchor-link class">
+    class Widgets::Time
   </h1>
 
   <section class="description">
     
-<p>A widget that executes ‘uptime`</p>
+<p>A time widget.</p>
+<dl class="rdoc-list label-list"><dt>format:</dt>
+<dd>
+<p>Takes a Time#strftime format string. See <a href="https://docs.ruby-lang.org/en/master/strftime_formatting_rdoc.html">Formats for Dates and times</a>. Default is +%H:%M:%S+.</p>
+</dd></dl>
 
   </section>
 
@@ -158,10 +162,11 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets/uptime.rb, line 6</span>
+            <pre><span class="ruby-comment"># File src/widgets/time.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
     <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>] <span class="ruby-operator">||=</span> <span class="ruby-value">1</span>
     <span class="ruby-keyword">super</span>
+    <span class="ruby-ivar">@options</span>[<span class="ruby-value">:format</span>] <span class="ruby-operator">||=</span> <span class="ruby-string">&#39;%H:%M:%S&#39;</span>
     <span class="ruby-ivar">@label</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-identifier">init_timer</span>
     <span class="ruby-identifier">append</span> <span class="ruby-ivar">@label</span>
@@ -202,9 +207,9 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets/uptime.rb, line 13</span>
+            <pre><span class="ruby-comment"># File src/widgets/time.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-string">`uptime`</span>.<span class="ruby-identifier">chomp</span>
+    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-ivar">@options</span>[<span class="ruby-value">:format</span>])
 <span class="ruby-keyword">end</span></pre>
           </div>
           

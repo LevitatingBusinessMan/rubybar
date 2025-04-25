@@ -226,7 +226,7 @@
             <pre><span class="ruby-comment"># File src/widgets.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>={}
     <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">options</span>
-                <span class="ruby-ivar">@interval</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_INTERVAL</span>
+                      <span class="ruby-ivar">@interval</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_INTERVAL</span>
     <span class="ruby-keyword">super</span> <span class="ruby-value">:horizontal</span>, <span class="ruby-ivar">@options</span>[<span class="ruby-value">:padding</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
     <span class="ruby-identifier">add_css_class</span> <span class="ruby-string">&quot;barwidget&quot;</span>
     <span class="ruby-identifier">add_css_class</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:class</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:class</span>]

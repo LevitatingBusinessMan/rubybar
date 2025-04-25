@@ -14,7 +14,7 @@ module Widgets
 
         def initialize options={}
             @options = options
-			@interval = options[:interval] || DEFAULT_INTERVAL
+			      @interval = options[:interval] || DEFAULT_INTERVAL
             super :horizontal, @options[:padding] || 0
             add_css_class "barwidget"
             add_css_class @options[:class] if @options[:class]
@@ -79,3 +79,4 @@ require_relative "widgets/load"
 require_relative "widgets/separator"
 require_relative "widgets/debug"
 require_relative "widgets/systemd"
+require_relative "widgets/time"
