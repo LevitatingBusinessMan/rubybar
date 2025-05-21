@@ -5,25 +5,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>class DSL - RDoc Documentation</title>
+<title>class RubyBar::DSL - RDoc Documentation</title>
 
-  <meta name="keywords" content="ruby,class,DSL">
+  <meta name="keywords" content="ruby,class,RubyBar::DSL">
 
-    <meta name="description" content="class DSL: The configuration DSL. notify-send #{@rand}` } do @rand = Random.">
+    <meta name="description" content="class RubyBar::DSL: The configuration DSL. notify-send #{@rand}` } do @rand = Random.">
 
 <script type="text/javascript">
-  var rdoc_rel_prefix = "./";
-  var index_rel_prefix = "./";
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
 </script>
 
-<script src="./js/navigation.js" defer></script>
-<script src="./js/search.js" defer></script>
-<script src="./js/search_index.js" defer></script>
-<script src="./js/searcher.js" defer></script>
-<script src="./js/darkfish.js" defer></script>
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
 
-<link href="./css/fonts.css" rel="stylesheet">
-<link href="./css/rdoc.css" rel="stylesheet">
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
 
 
 <body id="top" role="document" class="class">
@@ -36,13 +36,13 @@
   <div id="project-navigation">
     <div id="home-section" role="region" title="Quick navigation" class="nav-section">
   <h2>
-    <a href="./index.html" rel="home">Home</a>
+    <a href="../index.html" rel="home">Home</a>
   </h2>
 
   <div id="table-of-contents-navigation">
-    <a href="./table_of_contents.html#pages">Pages</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
   </div>
 </div>
 
@@ -70,13 +70,13 @@
 
 
   <ul class="link-list" role="directory">
-              <li>      <a href="#class-DSL-label-Entirely+custom+widgets">Entirely custom widgets</a>
+              <li>      <a href="#class-RubyBar::DSL-label-Entirely+custom+widgets">Entirely custom widgets</a>
           <li>
             <details open>
-              <summary>      <a href="#class-DSL-label-Styling">Styling</a>
+              <summary>      <a href="#class-RubyBar::DSL-label-Styling">Styling</a>
 </summary>
               <ul class="link-list" role="directory">
-                          <li>      <a href="#class-DSL-label-Some+implementation+details">Some implementation details</a>
+                          <li>      <a href="#class-RubyBar::DSL-label-Some+implementation+details">Some implementation details</a>
 
               </ul>
             </details>
@@ -96,7 +96,7 @@
   <h3>Included Modules</h3>
 
   <ul class="link-list">
-    <li><a class="include" href="Widgets.html">Widgets</a>
+    <li><a class="include" href="../Widgets.html">Widgets</a>
   </ul>
 </div>
 
@@ -133,12 +133,28 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-DSL">
+<main role="main" aria-labelledby="class-RubyBar::DSL">
   
+  
+    <ol role="navigation" aria-label="breadcrumb" class="breadcrumb">
+      
+      <li>
+        
+        <a href="../RubyBar.html">RubyBar</a><span>::</span>
+        
+      </li>
+      
+      <li>
+        
+        <span>DSL</span>
+        
+      </li>
+      
+    </ol>
   
 
-  <h1 id="class-DSL" class="anchor-link class">
-    class DSL
+  <h1 id="class-RubyBar::DSL" class="anchor-link class">
+    class RubyBar::DSL
   </h1>
 
   <section class="description">
@@ -188,7 +204,7 @@
 
 <p>Please check the public methods for this class for further documentation.</p>
 
-<h1 id="class-DSL-label-Entirely+custom+widgets">Entirely custom widgets<span><a href="#class-DSL-label-Entirely+custom+widgets">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<h1 id="class-RubyBar::DSL-label-Entirely+custom+widgets">Entirely custom widgets<span><a href="#class-RubyBar::DSL-label-Entirely+custom+widgets">&para;</a> <a href="#top">&uarr;</a></span></h1>
 
 <p>If you want a truly custom widget just make one. This code will create a spinner in your bar:</p>
 
@@ -205,17 +221,17 @@
 <span class="ruby-identifier">widget</span> <span class="ruby-value">:spinner</span>
 </pre>
 
-<h1 id="class-DSL-label-Styling">Styling<span><a href="#class-DSL-label-Styling">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<h1 id="class-RubyBar::DSL-label-Styling">Styling<span><a href="#class-RubyBar::DSL-label-Styling">&para;</a> <a href="#top">&uarr;</a></span></h1>
 
 <p>See <a href="DSL.html#method-i-css"><code>DSL#css</code></a>.</p>
 
-<h3 id="class-DSL-label-Some+implementation+details">Some implementation details<span><a href="#class-DSL-label-Some+implementation+details">&para;</a> <a href="#top">&uarr;</a></span></h3>
+<h3 id="class-RubyBar::DSL-label-Some+implementation+details">Some implementation details<span><a href="#class-RubyBar::DSL-label-Some+implementation+details">&para;</a> <a href="#top">&uarr;</a></span></h3>
 
 <p>The <a href="DSL.html"><code>DSL</code></a> produces a hash in <a href="DSL.html#attribute-i-options"><code>DSL#options</code></a>.</p>
 
 <p>This hash is then used to configure the bar. This hash is printed when rubybar is run in verbose mode.</p>
 
-<p>The <a href="DSL.html#method-i-widget"><code>DSL#widget</code></a> method also creates a hash that can then be used by <a href="Widgets/Widget.html#method-c-from_options"><code>Widgets::Widget::from_options</code></a> to build a <a href="Widgets/Widget.html"><code>Widgets::Widget</code></a>.</p>
+<p>The <a href="DSL.html#method-i-widget"><code>DSL#widget</code></a> method also creates a hash that can then be used by <a href="../Widgets/Widget.html#method-c-from_options"><code>Widgets::Widget::from_options</code></a> to build a <a href="../Widgets/Widget.html"><code>Widgets::Widget</code></a>.</p>
 
   </section>
 
@@ -378,7 +394,7 @@
           </div>
           <p>Add custom CSS.</p>
 
-<p>This can be combined with the ability to configure a <a href="Widgets/Widget.html"><code>Widgets::Widget</code></a> with a custom name and/or class for setting styles for a specific widget.</p>
+<p>This can be combined with the ability to configure a <a href="../Widgets/Widget.html"><code>Widgets::Widget</code></a> with a custom name and/or class for setting styles for a specific widget.</p>
 
 <p>All the top-level widgets can be selected as box.barwidget.</p>
 
@@ -423,7 +439,7 @@
   <span class="ruby-ivar">@separating</span>.<span class="ruby-identifier">pop</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
-          <p>Place a <a href="Widgets/Separator.html"><code>Widgets::Separator</code></a> between all widgets</p>
+          <p>Place a <a href="../Widgets/Separator.html"><code>Widgets::Separator</code></a> between all widgets</p>
 
 <pre class="ruby"><span class="ruby-identifier">separated</span> <span class="ruby-keyword">do</span>
   <span class="ruby-identifier">widget</span> <span class="ruby-value">:button</span>, <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> {} <span class="ruby-keyword">do</span> <span class="ruby-string">&quot;clicky click&quot;</span> <span class="ruby-keyword">end</span>
@@ -505,7 +521,7 @@
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-value">type:</span> <span class="ruby-identifier">type</span>, <span class="ruby-value">proc:</span> <span class="ruby-identifier">block</span>})
 <span class="ruby-keyword">end</span></pre>
           </div>
-          <p>Configure a <a href="Widgets/Widget.html"><code>Widgets::Widget</code></a> for your bar.</p>
+          <p>Configure a <a href="../Widgets/Widget.html"><code>Widgets::Widget</code></a> for your bar.</p>
         </div>
 
 

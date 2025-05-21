@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>class Widgets::Debug - RDoc Documentation</title>
+<title>class DBus::Message - RDoc Documentation</title>
 
-  <meta name="keywords" content="ruby,class,Widgets::Debug">
+  <meta name="keywords" content="ruby,class,DBus::Message">
 
-    <meta name="description" content="class Widgets::Debug: Break the program and jump into debugger">
+    <meta name="description" content="Documentation for the DBus::Message class">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -67,7 +67,7 @@
   
   <div id="parent-class-section" class="nav-section">
   <h3>Ancestors</h3>
-  <ul><li><a href="Widget.html">Widgets::Widget</a><ul><li>Gtk::Box</li></ul></li></ul>
+  <ul><li>Object</li></ul>
 </div>
 
   
@@ -76,11 +76,18 @@
   <div class="nav-section">
     <h3>Class Methods</h3>
     <ul class="link-list" role="directory">
-      <li class="calls-super" ><a href="#method-c-new">new</a></li>
+      <li ><a href="#method-c-new">new</a></li>
     </ul>
   </div>
 
 
+
+  <div class="nav-section">
+    <h3>Instance Methods</h3>
+    <ul class="link-list" role="directory">
+      <li ><a href="#method-i-original_initialize">original_initialize</a></li>
+    </ul>
+  </div>
 
 
 
@@ -92,39 +99,47 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-Widgets::Debug">
+<main role="main" aria-labelledby="class-DBus::Message">
   
   
     <ol role="navigation" aria-label="breadcrumb" class="breadcrumb">
       
       <li>
         
-        <a href="../Widgets.html">Widgets</a><span>::</span>
+        <a href="../DBus.html">DBus</a><span>::</span>
         
       </li>
       
       <li>
         
-        <span>Debug</span>
+        <span>Message</span>
         
       </li>
       
     </ol>
   
 
-  <h1 id="class-Widgets::Debug" class="anchor-link class">
-    class Widgets::Debug
+  <h1 id="class-DBus::Message" class="anchor-link class">
+    class DBus::Message
   </h1>
 
   <section class="description">
     
-<p>Break the program and jump into debugger</p>
-
   </section>
 
   <section id="5Buntitled-5D" class="documentation-section anchor-link">
 
 
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+        <dt id="ALLOW_INTERACTIVE_AUTHORIZATION">ALLOW_INTERACTIVE_AUTHORIZATION
+        <dd>
+          
+      </dl>
+    </section>
 
 
 
@@ -138,7 +153,7 @@
             <div class="method-heading">
               <a href="#method-c-new" title="Link to this method">
                 <span class="method-name">new</span>
-                <span class="method-args">(options)</span>
+                <span class="method-args">(mtype=INVALID)</span>
               </a>
             </div>
         </div>
@@ -151,24 +166,47 @@
 
         <div class="method-description">
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets/debug.rb, line 7</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
-    <span class="ruby-keyword">super</span>
-    <span class="ruby-ivar">@button</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">label:</span> <span class="ruby-string">&#39;bye 🐛&#39;</span>
-    <span class="ruby-ivar">@button</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&quot;clicked&quot;</span>) <span class="ruby-keyword">do</span>
-        <span class="ruby-identifier">binding</span>.<span class="ruby-identifier">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$stdout</span>.<span class="ruby-identifier">isatty</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">$stdin</span>.<span class="ruby-identifier">isatty</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">append</span> <span class="ruby-ivar">@button</span>
+            <pre><span class="ruby-comment"># File src/util.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span>(<span class="ruby-identifier">mtype</span>=<span class="ruby-constant">INVALID</span>)
+  <span class="ruby-identifier">original_initialize</span>(<span class="ruby-identifier">mtype</span>)
+  <span class="ruby-ivar">@flags</span> <span class="ruby-operator">|=</span> <span class="ruby-constant">ALLOW_INTERACTIVE_AUTHORIZATION</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
-            <div class="method-calls-super">
-              Calls superclass method
-              <a href="Widget.html#method-c-new"><code>Widgets::Widget::new</code></a>
+        </div>
+
+        <div class="aliases">
+          Also aliased as: <a href="Message.html#method-i-original_initialize">original_initialize</a>
+        </div>
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section anchor-link">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-original_initialize" class="method-detail anchor-link method-alias">
+        <div class="method-header">
+            <div class="method-heading">
+              <a href="#method-i-original_initialize" title="Link to this method">
+                <span class="method-name">original_initialize</span>
+                <span class="method-args">(mtype=INVALID)</span>
+              </a>
             </div>
         </div>
 
 
+        <div class="method-description">
+          
+        </div>
+
+
+        <div class="aliases">
+          Alias for: <a href="Message.html#method-c-new">new</a>
+        </div>
       </div>
 
     </section>

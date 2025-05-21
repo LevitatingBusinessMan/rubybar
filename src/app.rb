@@ -7,6 +7,7 @@ class App < Gtk::Application
   def initialize options
     super "levitating.rubybar"
     @options = options
+    setup_dbus
     apply_css
   end
 
@@ -25,4 +26,13 @@ class App < Gtk::Application
       Gtk::StyleProvider::PRIORITY_USER
     )
   end
+
+  def setup_dbus
+    #DBus::Message.include DBusExtensions::Message::AddInteractiveAuthFlag
+    DBus.session_bus.glibize
+    DBus.system_bus.glibize
+    # it appears that when a subscription is added,
+    # glibize should be run again
+  end
+
 end

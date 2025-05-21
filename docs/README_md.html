@@ -113,19 +113,21 @@
 <p>You can even code your own widgets.</p>
 
 <pre class="ruby"><span class="ruby-identifier">widget</span> <span class="ruby-value">:power</span>
+
 <span class="ruby-identifier">widget</span> <span class="ruby-value">:uptime</span>, <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-identifier">spawn</span> <span class="ruby-string">&quot;alacritty -e htop&amp;&quot;</span> }
-<span class="ruby-identifier">widget</span> <span class="ruby-value">:custom</span>,
-    <span class="ruby-value">interval:</span> <span class="ruby-value">1</span>,
-    <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-node">`notify-send #{@rand}`</span> } <span class="ruby-keyword">do</span>
+
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:custom</span> <span class="ruby-keyword">do</span>
     <span class="ruby-ivar">@rand</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">rand</span> <span class="ruby-value">100</span>
     <span class="ruby-node">&quot;random value &#39;#{@rand}&#39;&quot;</span>
 <span class="ruby-keyword">end</span>
 
 <span class="ruby-identifier">widget</span> <span class="ruby-value">:button</span>,
-    <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-string">`notify-send hi`</span> },
+    <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-string">`notify-send clicked`</span> },
     <span class="ruby-value">class:</span> <span class="ruby-string">&quot;red&quot;</span> <span class="ruby-keyword">do</span>
         <span class="ruby-string">&quot;CLICK ME&quot;</span>
 <span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:load</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">running</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;tasks: #{running}&quot;</span> <span class="ruby-keyword">end</span>
 
 <span class="ruby-identifier">widget</span> <span class="ruby-value">:systemd</span>, <span class="ruby-value">user:</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">service:</span> <span class="ruby-string">&quot;gammastep.service&quot;</span>
 

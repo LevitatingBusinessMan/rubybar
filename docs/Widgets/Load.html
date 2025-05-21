@@ -135,7 +135,7 @@
 
 <p>The last value is the last pid.</p>
 
-<p>By default the load widget formats these as +“load: #{@short} #{@mid} #{@long}”+.</p>
+<p>By default the load widget formats these as +“load avg: #{@short} #{@mid} #{@long}”+.</p>
 
 <p>However, when a block is given it is executed with all parameters.</p>
 
@@ -233,7 +233,7 @@
     <span class="ruby-identifier">str</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>]
         <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>].<span class="ruby-identifier">call</span> <span class="ruby-ivar">@short</span>, <span class="ruby-ivar">@mid</span>, <span class="ruby-ivar">@long</span>, <span class="ruby-ivar">@running</span>, <span class="ruby-ivar">@tasks</span>, <span class="ruby-ivar">@last_pid</span>
     <span class="ruby-keyword">else</span>
-        <span class="ruby-node">&quot;load: #{@short} #{@mid} #{@long}&quot;</span>
+        <span class="ruby-node">&quot;load avg: #{@short} #{@mid} #{@long}&quot;</span>
     <span class="ruby-keyword">end</span>
 
     <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-identifier">str</span>

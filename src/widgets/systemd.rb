@@ -21,13 +21,13 @@ class Widgets::Systemd < Widgets::Widget
         append @label
         @click_controller.signal_connect("pressed") { Widgets::Systemd.toggle @unit; update_safe }
 
-        # the following doesn't work yet because we don't listen the bus
-        @manager = Widgets::Systemd.get_manager
-        @manager.Subscribe()
+        @manager = Widgets::Systemd.get_manager options[:user]
+        @manager.Subscribe() rescue "systemd: Failed to subscribe"
         @manager.on_signal("JobRemoved") do |id, job, unit, result|
             p id, job, unit, result
             update_safe
         end
+        options[:user] ? DBus.session_bus.glibize : DBus.system_bus.glibize
     end
 
     # A function that uses a units ActiveState to return an emoji.  
