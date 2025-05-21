@@ -184,7 +184,6 @@
             <pre><span class="ruby-comment"># File src/widgets/load.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
     <span class="ruby-keyword">super</span>
-    <span class="ruby-ivar">@proc</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>]
     <span class="ruby-ivar">@label</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-identifier">init_timer</span>
     <span class="ruby-identifier">append</span> <span class="ruby-ivar">@label</span>
@@ -225,18 +224,11 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets/load.rb, line 30</span>
+            <pre><span class="ruby-comment"># File src/widgets/load.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
     <span class="ruby-ivar">@short</span>, <span class="ruby-ivar">@mid</span>, <span class="ruby-ivar">@long</span>, <span class="ruby-identifier">tasks</span>, <span class="ruby-ivar">@last_pid</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&quot;/proc/loadavg&quot;</span>).<span class="ruby-identifier">split</span>
     <span class="ruby-ivar">@running</span>, <span class="ruby-ivar">@tasks</span> = <span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;/&#39;</span>)
-    
-    <span class="ruby-identifier">str</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>]
-        <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>].<span class="ruby-identifier">call</span> <span class="ruby-ivar">@short</span>, <span class="ruby-ivar">@mid</span>, <span class="ruby-ivar">@long</span>, <span class="ruby-ivar">@running</span>, <span class="ruby-ivar">@tasks</span>, <span class="ruby-ivar">@last_pid</span>
-    <span class="ruby-keyword">else</span>
-        <span class="ruby-node">&quot;load avg: #{@short} #{@mid} #{@long}&quot;</span>
-    <span class="ruby-keyword">end</span>
-
-    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-identifier">str</span>
+    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-identifier">instance_exec</span>(<span class="ruby-ivar">@short</span>, <span class="ruby-ivar">@mid</span>, <span class="ruby-ivar">@long</span>, <span class="ruby-ivar">@running</span>, <span class="ruby-ivar">@tasks</span>, <span class="ruby-ivar">@last_pid</span>, <span class="ruby-operator">&amp;</span><span class="ruby-ivar">@proc</span>) <span class="ruby-operator">||</span> <span class="ruby-node">&quot;load avg: #{@short} #{@mid} #{@long}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

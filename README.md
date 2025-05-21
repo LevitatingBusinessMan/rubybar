@@ -21,7 +21,7 @@ widget :custom do
 end
 
 widget :button,
-    on_click: -> { `notify-send clicked` },
+    on_click: -> { `notify-send '#{self.inspect}'` },
     class: "red" do
         "CLICK ME"
 end

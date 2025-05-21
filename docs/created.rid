@@ -1,17 +1,17 @@
-Wed, 21 May 2025 03:30:44 +0200
+Wed, 21 May 2025 04:28:06 +0200
 src/app.rb	Wed, 21 May 2025 03:28:21 +0200
 src/bar.rb	Tue, 06 May 2025 18:33:55 +0200
-src/dsl.rb	Tue, 06 May 2025 17:49:41 +0200
+src/dsl.rb	Wed, 21 May 2025 04:25:43 +0200
 src/main.rb	Wed, 21 May 2025 02:43:11 +0200
 src/util.rb	Wed, 21 May 2025 03:28:17 +0200
-src/widgets.rb	Fri, 25 Apr 2025 03:19:17 +0200
-src/widgets/button.rb	Thu, 24 Apr 2025 17:09:32 +0200
-src/widgets/custom.rb	Thu, 24 Apr 2025 17:04:50 +0200
+src/widgets.rb	Wed, 21 May 2025 04:21:55 +0200
+src/widgets/button.rb	Wed, 21 May 2025 04:17:39 +0200
+src/widgets/custom.rb	Wed, 21 May 2025 04:17:40 +0200
 src/widgets/debug.rb	Mon, 05 May 2025 21:25:08 +0200
-src/widgets/load.rb	Fri, 25 Apr 2025 03:27:55 +0200
+src/widgets/load.rb	Wed, 21 May 2025 04:17:31 +0200
 src/widgets/power.rb	Thu, 24 Apr 2025 17:10:49 +0200
 src/widgets/separator.rb	Fri, 25 Apr 2025 00:38:16 +0200
-src/widgets/systemd.rb	Wed, 21 May 2025 03:28:44 +0200
+src/widgets/systemd.rb	Wed, 21 May 2025 04:16:41 +0200
 src/widgets/time.rb	Fri, 25 Apr 2025 03:19:17 +0200
 src/widgets/uptime.rb	Fri, 25 Apr 2025 03:19:17 +0200
-README.md	Fri, 25 Apr 2025 03:19:17 +0200
+README.md	Wed, 21 May 2025 04:25:03 +0200

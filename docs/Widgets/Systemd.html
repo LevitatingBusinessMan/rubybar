@@ -369,7 +369,7 @@
           <div class="method-source-code" id="update-source">
             <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-node">&quot;#{options[:service]} #{Widgets::Systemd.get_status_icon(@unit)}&quot;</span>
+    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span>(<span class="ruby-identifier">instance_exec</span>(<span class="ruby-operator">&amp;</span><span class="ruby-ivar">@proc</span>) <span class="ruby-operator">||</span> <span class="ruby-node">&quot;#{@options[:service]} #{Widgets::Systemd.get_status_icon(@unit)}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

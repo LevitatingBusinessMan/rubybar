@@ -188,15 +188,15 @@
 
         <div class="method-description">
           <div class="method-source-code" id="from_options-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 61</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">from_options</span> <span class="ruby-identifier">widget</span>
-    <span class="ruby-identifier">class_name</span> = <span class="ruby-identifier">widget</span>[<span class="ruby-value">:type</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">Widgets</span>.<span class="ruby-identifier">const_defined?</span> <span class="ruby-identifier">class_name</span>
-      <span class="ruby-identifier">klass</span> = <span class="ruby-constant">Widgets</span>.<span class="ruby-identifier">const_get</span> <span class="ruby-identifier">class_name</span>
-                  <span class="ruby-identifier">kwidget</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">widget</span>
-                  <span class="ruby-identifier">kwidget</span>.<span class="ruby-identifier">add_css_class</span> <span class="ruby-identifier">widget</span>[<span class="ruby-value">:type</span>]
-      <span class="ruby-keyword">return</span> <span class="ruby-identifier">kwidget</span>
-    <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">class_name</span> = <span class="ruby-identifier">widget</span>[<span class="ruby-value">:type</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Widgets</span>.<span class="ruby-identifier">const_defined?</span> <span class="ruby-identifier">class_name</span>
+    <span class="ruby-identifier">klass</span> = <span class="ruby-constant">Widgets</span>.<span class="ruby-identifier">const_get</span> <span class="ruby-identifier">class_name</span>
+    <span class="ruby-identifier">kwidget</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">widget</span>
+    <span class="ruby-identifier">kwidget</span>.<span class="ruby-identifier">add_css_class</span> <span class="ruby-identifier">widget</span>[<span class="ruby-value">:type</span>]
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">kwidget</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           <p>Create a <a href="Widget.html"><code>Widgets::Widget</code></a> from a hash with options</p>
@@ -225,25 +225,26 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File src/widgets.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>={}
-    <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">options</span>
-                      <span class="ruby-ivar">@interval</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_INTERVAL</span>
-    <span class="ruby-keyword">super</span> <span class="ruby-value">:horizontal</span>, <span class="ruby-ivar">@options</span>[<span class="ruby-value">:padding</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
-    <span class="ruby-identifier">add_css_class</span> <span class="ruby-string">&quot;barwidget&quot;</span>
-    <span class="ruby-identifier">add_css_class</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:class</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:class</span>]
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:name</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:name</span>]
-    
-    <span class="ruby-ivar">@click_controller</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">GestureClick</span>.<span class="ruby-identifier">new</span>
-    <span class="ruby-ivar">@click_controller</span>.<span class="ruby-identifier">button</span> = <span class="ruby-constant">Gdk</span><span class="ruby-operator">::</span><span class="ruby-constant">BUTTON_PRIMARY</span>
-    <span class="ruby-identifier">add_controller</span>(<span class="ruby-ivar">@click_controller</span>)
+  <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">options</span>
+  <span class="ruby-ivar">@interval</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_INTERVAL</span>
+  <span class="ruby-ivar">@proc</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {}
+  <span class="ruby-keyword">super</span> <span class="ruby-value">:horizontal</span>, <span class="ruby-ivar">@options</span>[<span class="ruby-value">:padding</span>] <span class="ruby-operator">||</span> <span class="ruby-value">0</span>
+  <span class="ruby-identifier">add_css_class</span> <span class="ruby-string">&quot;barwidget&quot;</span>
+  <span class="ruby-identifier">add_css_class</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:class</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:class</span>]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:name</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:name</span>]
+  
+  <span class="ruby-ivar">@click_controller</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">GestureClick</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@click_controller</span>.<span class="ruby-identifier">button</span> = <span class="ruby-constant">Gdk</span><span class="ruby-operator">::</span><span class="ruby-constant">BUTTON_PRIMARY</span>
+  <span class="ruby-identifier">add_controller</span>(<span class="ruby-ivar">@click_controller</span>)
 
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">:on_click</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@noclick</span>
-        <span class="ruby-ivar">@click_controller</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&quot;pressed&quot;</span>) { <span class="ruby-identifier">options</span>[<span class="ruby-value">:on_click</span>].<span class="ruby-identifier">call</span> }
-        <span class="ruby-identifier">set_cursor</span> <span class="ruby-constant">Gdk</span><span class="ruby-operator">::</span><span class="ruby-constant">Cursor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:pointer</span>) <span class="ruby-comment"># https://docs.gtk.org/gdk4/ctor.Cursor.new_from_name.html</span>
-    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">:on_click</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@noclick</span>
+    <span class="ruby-ivar">@click_controller</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&quot;pressed&quot;</span>) { <span class="ruby-identifier">instance_exec</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">options</span>[<span class="ruby-value">:on_click</span>]) }
+    <span class="ruby-identifier">set_cursor</span> <span class="ruby-constant">Gdk</span><span class="ruby-operator">::</span><span class="ruby-constant">Cursor</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:pointer</span>) <span class="ruby-comment"># https://docs.gtk.org/gdk4/ctor.Cursor.new_from_name.html</span>
+  <span class="ruby-keyword">end</span>
 
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">:cursor</span>
-        <span class="ruby-identifier">set_cursor</span> <span class="ruby-constant">Gdk</span><span class="ruby-operator">::</span><span class="ruby-constant">Cursor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:cursor</span>]
-    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value">:cursor</span>
+      <span class="ruby-identifier">set_cursor</span> <span class="ruby-constant">Gdk</span><span class="ruby-operator">::</span><span class="ruby-constant">Cursor</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:cursor</span>]
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -281,9 +282,9 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 38</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-    <span class="ruby-comment"># nothing</span>
+  <span class="ruby-comment"># nothing</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           <p>Update method for this widget</p>
@@ -310,10 +311,10 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update_safe-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 43</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_safe</span>
-        <span class="ruby-identifier">update</span>
-        <span class="ruby-comment"># no error handling yet whoops</span>
+  <span class="ruby-identifier">update</span>
+  <span class="ruby-comment"># no error handling yet whoops</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           <p>Like update but with error handling</p>

@@ -161,7 +161,6 @@
             <pre><span class="ruby-comment"># File src/widgets/button.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
     <span class="ruby-keyword">super</span>
-    <span class="ruby-ivar">@proc</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:proc</span>]
     <span class="ruby-ivar">@button</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Button</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">label:</span> <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-identifier">update_safe</span>
     <span class="ruby-identifier">init_timer</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>]
@@ -203,9 +202,9 @@
 
         <div class="method-description">
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets/button.rb, line 18</span>
+            <pre><span class="ruby-comment"># File src/widgets/button.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-    <span class="ruby-ivar">@button</span>.<span class="ruby-identifier">set_label</span> <span class="ruby-ivar">@proc</span>.<span class="ruby-identifier">call</span>
+    <span class="ruby-ivar">@button</span>.<span class="ruby-identifier">set_label</span> <span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-ivar">@proc</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
