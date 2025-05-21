@@ -22,7 +22,6 @@ Example:
 class Widgets::Load < Widgets::Widget
     def initialize options
         super
-        @proc = options[:proc]
         @label = Gtk::Label.new ''
         init_timer
         append @label
@@ -30,13 +29,6 @@ class Widgets::Load < Widgets::Widget
     def update
         @short, @mid, @long, tasks, @last_pid = File.read("/proc/loadavg").split
         @running, @tasks = tasks.split('/')
-        
-        str = if options[:proc]
-            options[:proc].call @short, @mid, @long, @running, @tasks, @last_pid
-        else
-            "load avg: #{@short} #{@mid} #{@long}"
-        end
-
-        @label.set_text str
+        @label.set_text instance_exec(@short, @mid, @long, @running, @tasks, @last_pid, &@proc) || "load avg: #{@short} #{@mid} #{@long}"
     end
 end

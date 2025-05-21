@@ -9,13 +9,12 @@ but styled as a button.
 class Widgets::Button < Widgets::Widget
     def initialize options
         super
-        @proc = options[:proc]
         @button = Gtk::Button.new label: ''
         update_safe
         init_timer if options[:interval]
         append @button
     end
     def update
-        @button.set_label @proc.call
+        @button.set_label instance_eval(&@proc)
     end
 end

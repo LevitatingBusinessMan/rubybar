@@ -5,13 +5,11 @@ require_relative "../widgets"
 class Widgets::Custom < Widgets::Widget
     def initialize options
         super
-        @proc = options[:proc]
         @label = Gtk::Label.new ''
         init_timer
         append @label
     end
     def update
-        @str = @proc.call
-        @label.set_text @str
+        @label.set_text instance_eval(&@proc)
     end
 end

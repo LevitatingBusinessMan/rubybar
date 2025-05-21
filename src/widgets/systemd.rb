@@ -41,7 +41,7 @@ class Widgets::Systemd < Widgets::Widget
     end
 
     def update
-        @label.set_text "#{options[:service]} #{Widgets::Systemd.get_status_icon(@unit)}"
+        @label.set_text(instance_exec(&@proc) || "#{@options[:service]} #{Widgets::Systemd.get_status_icon(@unit)}")
     end
     
     def self.toggle unit

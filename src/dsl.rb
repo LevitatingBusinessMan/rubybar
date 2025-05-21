@@ -13,7 +13,7 @@ Example configuration file:
   end
 
   widget :button,
-      on_click: -> { `notify-send hi` },
+    on_click: -> { `notify-send '#{self.inspect}'` },
       class: "red" do
           "CLICK ME"
   end
