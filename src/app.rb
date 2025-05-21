@@ -28,7 +28,7 @@ class App < Gtk::Application
   end
 
   def setup_dbus
-    #DBus::Message.include DBusExtensions::Message::AddInteractiveAuthFlag
+    DBus::Message.prepend DBusExtensions::Message::AddInteractiveAuthFlag
     DBus.session_bus.glibize
     DBus.system_bus.glibize
     # it appears that when a subscription is added,

@@ -23,10 +23,7 @@ class Widgets::Systemd < Widgets::Widget
 
         @manager = Widgets::Systemd.get_manager options[:user]
         @manager.Subscribe() rescue "systemd: Failed to subscribe"
-        @manager.on_signal("JobRemoved") do |id, job, unit, result|
-            p id, job, unit, result
-            update_safe
-        end
+        @manager.on_signal("JobRemoved") { |id, job, unit, result| update_safe }
         options[:user] ? DBus.session_bus.glibize : DBus.system_bus.glibize
     end
 
