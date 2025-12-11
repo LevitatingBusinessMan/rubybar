@@ -13,3 +13,5 @@ gem "rdoc", "~> 6.13", group: :development
 gem "sys-cpu", "~> 1.1"
 
 gem "ruby-dbus", "~> 0.25.0"
+
+gem "debug", "~> 1.11"

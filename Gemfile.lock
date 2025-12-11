@@ -11,6 +11,9 @@ GEM
       cairo (>= 1.16.2)
       glib2 (= 4.2.9)
     date (3.4.1)
+    debug (1.11.0)
+      irb (~> 1.10)
+      reline (>= 0.3.8)
     ffi (1.17.2)
     ffi (1.17.2-x86_64-linux-gnu)
     fiddle (1.1.7)
@@ -32,6 +35,11 @@ GEM
       atk (= 4.2.9)
       gdk4 (= 4.2.9)
     gtk4_layer_shell (1.0.0)
+    io-console (0.8.1)
+    irb (1.15.2)
+      pp (>= 0.6.0)
+      rdoc (>= 4.0.0)
+      reline (>= 0.4.2)
     json (2.10.2)
     logger (1.7.0)
     matrix (0.4.2)
@@ -40,6 +48,9 @@ GEM
       cairo-gobject (= 4.2.9)
       gobject-introspection (= 4.2.9)
     pkg-config (1.6.1)
+    pp (0.6.3)
+      prettyprint
+    prettyprint (0.2.0)
     psych (5.2.3)
       date
       stringio
@@ -48,6 +59,8 @@ GEM
     red-colors (0.4.0)
       json
       matrix
+    reline (0.6.2)
+      io-console (~> 0.5)
     rexml (3.4.1)
     ruby-dbus (0.25.0)
       logger
@@ -62,6 +75,7 @@ PLATFORMS
   x86_64-linux-gnu
 
 DEPENDENCIES
+  debug (~> 1.11)
   gtk4 (~> 4.2)
   gtk4_layer_shell (~> 1.0)
   rdoc (~> 6.13)
