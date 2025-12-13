@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>RDoc Documentation</title>
 
+
   <meta name="keywords" content="ruby,documentation,RDoc Documentation">
 
+  <meta name="description" content="RDoc Documentation: RubyBar A bar for wayland implemented with Ruby and GTK. Configuration is done via a Ruby DSL.">
 
-    <meta name="description" content="RDoc Documentation: RubyBar A bar for wayland implemented with Ruby and GTK. Configuration is done via a Ruby DSL.">
+
+
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
@@ -25,6 +28,7 @@
 
 <link href="./css/fonts.css" rel="stylesheet">
 <link href="./css/rdoc.css" rel="stylesheet">
+
 
 
 <body id="top" role="document" class="file">
@@ -53,6 +57,7 @@
       <input id="search-field" role="combobox" aria-label="Search"
              aria-autocomplete="list" aria-controls="search-results"
              type="text" name="search" placeholder="Search (/) for a class, method, ..." spellcheck="false"
+             autocomplete="off"
              title="Type to search, Up and Down to navigate, Enter to load">
     </div>
 
@@ -70,42 +75,77 @@
 
 
 
+
+
   <ul class="link-list" role="directory">
-              <li>
+    
+
+
+
+
+          <li>
             <details open>
-              <summary>      <a href="#label-RubyBar">RubyBar</a>
+              <summary>
+      <a href="#label-RubyBar">RubyBar</a>
 </summary>
               <ul class="link-list" role="directory">
-                          <li>      <a href="#label-Configuration">Configuration</a>
-          <li>      <a href="#label-Development">Development</a>
+                
+
+
+
+
+          <li>
+      <a href="#label-Configuration">Configuration</a>
+</li>
+
+
+
+
+          <li>
+      <a href="#label-Development">Development</a>
+</li>
+
+
 
               </ul>
             </details>
           </li>
 
+
+
   </ul>
 </div>
 
+
   
+
+
+
+
 <div id="fileindex-section" class="nav-section">
   <h3>Pages</h3>
 
   <ul class="link-list">
-    <li><a href="./README_md.html">README</a>
+
+
+
+    <li><a href="./README_md.html">README</a></li>
+
   </ul>
 </div>
+
 
   <div id="classindex-section" class="nav-section">
   <h3>Class and Module Index</h3>
 
-  <ul class="link-list"><li><code><a href="./App.html">App</a></code></li><li><code><a href="./Bar.html">Bar</a></code></li><li><details><summary><code><a href="./DBusExtensions.html">DBusExtensions</a></code></summary><ul class="link-list"><li><details><summary><code><a href="./DBusExtensions/Message.html">Message</a></code></summary><ul class="link-list"><li><code><a href="./DBusExtensions/Message/AddInteractiveAuthFlag.html">AddInteractiveAuthFlag</a></code></li></ul></details></li></ul></details></li><li><code><a href="./DSL.html">DSL</a></code></li><li><code><a href="./String.html">String</a></code></li><li><details><summary><code><a href="./Widgets.html">Widgets</a></code></summary><ul class="link-list"><li><code><a href="./Widgets/Button.html">Button</a></code></li><li><code><a href="./Widgets/Custom.html">Custom</a></code></li><li><code><a href="./Widgets/Debug.html">Debug</a></code></li><li><code><a href="./Widgets/Load.html">Load</a></code></li><li><code><a href="./Widgets/Power.html">Power</a></code></li><li><code><a href="./Widgets/Separator.html">Separator</a></code></li><li><code><a href="./Widgets/Systemd.html">Systemd</a></code></li><li><code><a href="./Widgets/Time.html">Time</a></code></li><li><code><a href="./Widgets/Uptime.html">Uptime</a></code></li><li><code><a href="./Widgets/Widget.html">Widget</a></code></li></ul></details></li></ul>
+  <ul class="link-list nav-list"><li><code><a href="./App.html">App</a></code></li><li><code><a href="./Bar.html">Bar</a></code></li><li><details><summary><code><a href="./DBusExtensions.html">DBusExtensions</a></code></summary><ul class="link-list nav-list"><li><details><summary><code><a href="./DBusExtensions/Message.html">Message</a></code></summary><ul class="link-list nav-list"><li><code><a href="./DBusExtensions/Message/AddInteractiveAuthFlag.html">AddInteractiveAuthFlag</a></code></li></ul></details></li></ul></details></li><li><code><a href="./DSL.html">DSL</a></code></li><li><code><a href="./String.html">String</a></code></li><li><details><summary><code><a href="./Widgets.html">Widgets</a></code></summary><ul class="link-list nav-list"><li><code><a href="./Widgets/Button.html">Button</a></code></li><li><code><a href="./Widgets/Custom.html">Custom</a></code></li><li><code><a href="./Widgets/Debug.html">Debug</a></code></li><li><code><a href="./Widgets/Load.html">Load</a></code></li><li><code><a href="./Widgets/Memory.html">Memory</a></code></li><li><code><a href="./Widgets/Power.html">Power</a></code></li><li><code><a href="./Widgets/Separator.html">Separator</a></code></li><li><code><a href="./Widgets/Systemd.html">Systemd</a></code></li><li><code><a href="./Widgets/Time.html">Time</a></code></li><li><code><a href="./Widgets/Uptime.html">Uptime</a></code></li><li><code><a href="./Widgets/Widget.html">Widget</a></code></li></ul></details></li></ul>
 </div>
 
 
   <footer id="validator-badges" role="contentinfo">
-  <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.13.1.
-  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a></p>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.17.0.</p>
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.</p>
 </footer>
 
 </nav>
@@ -113,7 +153,7 @@
 <main role="main">
 
   
-<h1 id="label-RubyBar">RubyBar<span><a href="#label-RubyBar">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<h1 id="label-RubyBar"><a href="#label-RubyBar">RubyBar</a></h1>
 
 <p>A bar for wayland implemented with Ruby and GTK. Configuration is done via a Ruby <a href="DSL.html"><code>DSL</code></a>.</p>
 
@@ -147,16 +187,18 @@
 </span><span class="ruby-identifier">CSS</span>
 </pre>
 
-<h2 id="label-Configuration">Configuration<span><a href="#label-Configuration">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2 id="label-Configuration"><a href="#label-Configuration">Configuration</a></h2>
 
 <p>Configuration is primarily done via the <a href="DSL.html"><code>DSL</code></a>. Please see the <a href="DSL.html"><code>DSL</code></a> <a href="https://rubybar.levitati.ng/DSL.html">documentation</a> for the available methods.</p>
 
-<h2 id="label-Development">Development<span><a href="#label-Development">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<h2 id="label-Development"><a href="#label-Development">Development</a></h2>
 
 <p>Have <code>gtk4_layer_shell</code> and <code>gtk4</code> installed for development.</p>
 
 <pre class="ruby"><span class="ruby-constant">GTK_DEBUG</span>=<span class="ruby-identifier">interactive</span> <span class="ruby-identifier">ruby</span> <span class="ruby-identifier">src</span><span class="ruby-operator">/</span><span class="ruby-identifier">main</span>.<span class="ruby-identifier">rb</span>
 </pre>
 
+
 </main>
+</body>
 

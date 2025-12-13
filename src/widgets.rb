@@ -1,14 +1,15 @@
 require "gtk4"
 
-# Base Widget class.
-# Defines some common behavior across top level widgets in the bar.
+# This module contains all the widgets and the base class Widget.
 module Widgets
   DEFAULT_INTERVAL = 5
 
+  # Base Widget class.
+  # Defines some common behavior across top level widgets in the bar.
   class Widget < Gtk::Box
     # Interval with which to update this widget
     attr_accessor :interval
-    
+
     # The options this widget was created with
     attr_reader :options
 
@@ -20,7 +21,7 @@ module Widgets
       add_css_class "barwidget"
       add_css_class @options[:class] if @options[:class]
       self.name = @options[:name] if @options[:name]
-      
+
       @click_controller = Gtk::GestureClick.new
       @click_controller.button = Gdk::BUTTON_PRIMARY
       add_controller(@click_controller)
@@ -81,3 +82,4 @@ require_relative "widgets/separator"
 require_relative "widgets/debug"
 require_relative "widgets/systemd"
 require_relative "widgets/time"
+require_relative "widgets/memory"

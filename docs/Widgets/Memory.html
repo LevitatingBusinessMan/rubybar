@@ -5,13 +5,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>class Widgets::Uptime - RDoc Documentation</title>
+<title>class Widgets::Memory - RDoc Documentation</title>
 
 
-  <meta name="keywords" content="ruby,class,Widgets::Uptime">
+  <meta name="keywords" content="ruby,class,Widgets::Memory">
 
 
-    <meta name="description" content="class Widgets::Uptime: A widget that executes `uptime`">
+    <meta name="description" content="class Widgets::Memory: meminfo*. total, @available, @free, @cached and @meminfo.">
 
 
 
@@ -117,7 +117,7 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-Widgets::Uptime">
+<main role="main" aria-labelledby="class-Widgets::Memory">
   
   
     <ol role="navigation" aria-label="Breadcrumb navigation" class="breadcrumb">
@@ -130,20 +130,29 @@
       
       <li>
         
-        <span>Uptime</span>
+        <span>Memory</span>
         
       </li>
       
     </ol>
   
 
-  <h1 id="class-Widgets::Uptime" class="anchor-link class">
-    class Widgets::Uptime
+  <h1 id="class-Widgets::Memory" class="anchor-link class">
+    class Widgets::Memory
   </h1>
 
   <section class="description">
     
-<p>A widget that executes ‘uptime`</p>
+<p>The <a href="Memory.html"><code>Memory</code></a> widget reads <strong>/proc/meminfo</strong>.</p>
+
+<p>By default the widget displays a precentage like: “memory: #{percentage}%”</p>
+
+<p>You can make use of the instances values: @total, @available, @free, @cached and @meminfo. The values are in KB. @meminfo is a hash containing the raw /proc/meminfo data.</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">widget</span> <span class="ruby-value">:memory</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">cached</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;cache: #{cached / 1_000_000}GB&quot;</span> <span class="ruby-keyword">end</span>
+</pre>
 
   </section>
 
@@ -188,9 +197,8 @@
         <div class="method-description">
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets/uptime.rb, line 6</span>
+            <pre><span class="ruby-comment"># File src/widgets/memory.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
-    <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>] <span class="ruby-operator">||=</span> <span class="ruby-value">1</span>
     <span class="ruby-keyword">super</span>
     <span class="ruby-ivar">@label</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;&#39;</span>
     <span class="ruby-identifier">init_timer</span>
@@ -249,9 +257,18 @@
         <div class="method-description">
 
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets/uptime.rb, line 13</span>
+            <pre><span class="ruby-comment"># File src/widgets/memory.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-string">`uptime`</span>.<span class="ruby-identifier">chomp</span>
+    <span class="ruby-ivar">@meminfo</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;/proc/meminfo&#39;</span>).<span class="ruby-identifier">lines</span>.<span class="ruby-identifier">map</span> {
+      <span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span> = <span class="ruby-identifier">it</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/([^:\s]): (\d)/</span>).<span class="ruby-identifier">captures</span>
+      [<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_i</span>]
+    }.<span class="ruby-identifier">to_h</span>
+    <span class="ruby-ivar">@total</span> = <span class="ruby-ivar">@meminfo</span>[<span class="ruby-string">&#39;MemTotal&#39;</span>]
+    <span class="ruby-ivar">@available</span> = <span class="ruby-ivar">@meminfo</span>[<span class="ruby-string">&#39;MemAvailable&#39;</span>]
+    <span class="ruby-ivar">@free</span> = <span class="ruby-ivar">@meminfo</span>[<span class="ruby-string">&#39;MemFree&#39;</span>]
+    <span class="ruby-ivar">@cached</span> = <span class="ruby-ivar">@meminfo</span>[<span class="ruby-string">&#39;Cached&#39;</span>]
+    <span class="ruby-identifier">percentage_used</span> = ((<span class="ruby-ivar">@total</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@available</span>) <span class="ruby-operator">/</span> <span class="ruby-ivar">@total</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">*</span> <span class="ruby-value">100</span>
+    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-identifier">instance_exec</span>(<span class="ruby-ivar">@total</span>, <span class="ruby-ivar">@available</span>, <span class="ruby-ivar">@free</span>, <span class="ruby-ivar">@cached</span>, <span class="ruby-operator">&amp;</span><span class="ruby-ivar">@proc</span>) <span class="ruby-operator">||</span> <span class="ruby-node">&quot;memory: #{percentage_used.round(0)}%&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
 
