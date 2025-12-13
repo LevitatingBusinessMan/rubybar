@@ -2,11 +2,11 @@ require "gtk4"
 require_relative "../widgets"
 
 =begin
-The Load widget reads /proc/loadavg.
-Such values read like +1.28 1.18 0.92 1/2076 771310+.
-Where the first 3 values are the 5, 10 and 15m average loads.
-The fourth value is the running and total tasks (separated by a slash).
-The last value is the last pid.
+The Load widget reads /proc/loadavg.  
+Such values read like +1.28 1.18 0.92 1/2076 771310+.  
+Where the first 3 values are the 5, 10 and 15m average loads.  
+The fourth value is the running and total tasks (separated by a slash).  
+The last value is the last pid.  
 
 By default the load widget formats these as +"load avg: #{@short} #{@mid} #{@long}"+.
 However, when a block is given it is executed with all parameters.
