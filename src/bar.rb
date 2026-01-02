@@ -20,7 +20,7 @@ class Bar < Gtk::ApplicationWindow
 
     for widget in app.options[:widgets]
       pp widget if app.options[:verbose]
-      if klass = Widgets::Widget.from_options widget
+      if (klass = Widgets::Widget.from_options widget)
         box.append klass
       else
         puts "Unknown widget name #{widget[:type].inspect}"
