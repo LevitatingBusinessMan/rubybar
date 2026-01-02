@@ -13,3 +13,7 @@ gem "rdoc", "~> 6.13", group: :development
 gem "ruby-dbus", "~> 0.25.0"
 
 gem "debug", "~> 1.11"
+
+gem "astronoby", "~> 0.9.0"
+
+gem "low_type", "~> 1.1"

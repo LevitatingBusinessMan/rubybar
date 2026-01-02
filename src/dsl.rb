@@ -73,6 +73,7 @@ The DSL#widget method also creates a hash that can then be used by Widgets::Widg
 class DSL
   include Widgets
   attr_reader :options
+  using RubyBar::Util::StringExtensions
 
   def initialize path
     @options = {

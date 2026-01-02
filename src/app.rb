@@ -1,7 +1,7 @@
 require "gtk4"
 
 # The GTK Application
-class App < Gtk::Application
+class App < Gtk::Application # :nodoc:
   attr_reader :options
 
   def initialize options
@@ -28,7 +28,7 @@ class App < Gtk::Application
   end
 
   def setup_dbus
-    DBus::Message.prepend DBusExtensions::Message::AddInteractiveAuthFlag
+    DBus::Message.prepend RubyBar::Util::DBusExtensions::Message::AddInteractiveAuthFlag
     DBus.session_bus.glibize
     DBus.system_bus.glibize
     # it appears that when a subscription is added,

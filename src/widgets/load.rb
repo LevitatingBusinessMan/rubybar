@@ -29,6 +29,7 @@ class Widgets::Load < Widgets::Widget
     def update
         @short, @mid, @long, tasks, @last_pid = File.read("/proc/loadavg").split
         @running, @tasks = tasks.split('/')
+        # TODO consider remove these arguments, it's instance_exec'd anyway
         @label.set_text instance_exec(@short, @mid, @long, @running, @tasks, @last_pid, &@proc) || "load avg: #{@short} #{@mid} #{@long}"
     end
 end

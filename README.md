@@ -13,7 +13,7 @@ You can even code your own widgets.
 ```RUBY
 widget :power
 
-widget :uptime, on_click: -> { spawn "alacritty -e htop&" }
+widget :uptime, on_click: -> { spawn "alacritty -e htop" }
 
 widget :custom do
     @rand = Random.rand 100
@@ -29,6 +29,8 @@ end
 widget :load do |_, _, _, running| "tasks: #{running}" end
 
 widget :systemd, user: true, service: "gammastep.service"
+
+widget :moon do "moon: #{@phase}" end
 
 css <<CSS
 box.red * {

@@ -1,6 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    astronoby (0.9.0)
+      ephem (~> 0.3)
+      matrix (~> 0.4.2)
     atk (4.3.4)
       glib2 (= 4.3.4)
       rake
@@ -15,6 +18,10 @@ GEM
     debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    ephem (0.4.1)
+      minitar (~> 0.12)
+      numo-narray (~> 0.9.2.1)
+      zlib (~> 3.2)
     erb (6.0.0)
     fiddle (1.1.8)
     gdk4 (4.3.4)
@@ -50,8 +57,11 @@ GEM
       reline (>= 0.4.2)
     json (2.18.0)
     logger (1.7.0)
+    low_type (1.1.4)
     matrix (0.4.3)
+    minitar (0.12.1)
     native-package-installer (1.1.9)
+    numo-narray (0.9.2.1)
     pango (4.3.4)
       cairo-gobject (= 4.3.4)
       gobject-introspection (= 4.3.4)
@@ -79,15 +89,18 @@ GEM
     stringio (3.1.9)
     tsort (0.2.0)
     xdg (9.5.0)
+    zlib (3.2.2)
 
 PLATFORMS
   ruby
   x86_64-linux-gnu
 
 DEPENDENCIES
+  astronoby (~> 0.9.0)
   debug (~> 1.11)
   gtk4 (~> 4.2)
   gtk4_layer_shell (~> 1.0)
+  low_type (~> 1.1)
   rdoc (~> 6.13)
   ruby-dbus (~> 0.25.0)
   xdg (~> 9.2)

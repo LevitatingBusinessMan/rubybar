@@ -143,7 +143,15 @@
 
   <section class="description">
     
-<p>The <a href="Load.html"><code>Load</code></a> widget reads /proc/loadavg. Such values read like +1.28 1.18 0.92 1/2076 771310+. Where the first 3 values are the 5, 10 and 15m average loads. The fourth value is the running and total tasks (separated by a slash). The last value is the last pid.</p>
+<p>The <a href="Load.html"><code>Load</code></a> widget reads /proc/loadavg.</p>
+
+<p>Such values read like +1.28 1.18 0.92 1/2076 771310+.</p>
+
+<p>Where the first 3 values are the 5, 10 and 15m average loads.</p>
+
+<p>The fourth value is the running and total tasks (separated by a slash).</p>
+
+<p>The last value is the last pid.</p>
 
 <p>By default the load widget formats these as +“load avg: #{@short} #{@mid} #{@long}”+. However, when a block is given it is executed with all parameters.</p>
 
@@ -265,6 +273,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
     <span class="ruby-ivar">@short</span>, <span class="ruby-ivar">@mid</span>, <span class="ruby-ivar">@long</span>, <span class="ruby-identifier">tasks</span>, <span class="ruby-ivar">@last_pid</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&quot;/proc/loadavg&quot;</span>).<span class="ruby-identifier">split</span>
     <span class="ruby-ivar">@running</span>, <span class="ruby-ivar">@tasks</span> = <span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;/&#39;</span>)
+    <span class="ruby-comment"># TODO consider remove these arguments, it&#39;s instance_exec&#39;d anyway</span>
     <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-identifier">instance_exec</span>(<span class="ruby-ivar">@short</span>, <span class="ruby-ivar">@mid</span>, <span class="ruby-ivar">@long</span>, <span class="ruby-ivar">@running</span>, <span class="ruby-ivar">@tasks</span>, <span class="ruby-ivar">@last_pid</span>, <span class="ruby-operator">&amp;</span><span class="ruby-ivar">@proc</span>) <span class="ruby-operator">||</span> <span class="ruby-node">&quot;load avg: #{@short} #{@mid} #{@long}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

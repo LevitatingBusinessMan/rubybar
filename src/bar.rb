@@ -4,7 +4,7 @@ require_relative "widgets"
 require_relative "util"
 
 # The Application Window
-class Bar < Gtk::ApplicationWindow
+class Bar < Gtk::ApplicationWindow # :nodoc:
   def initialize app
     super app
 

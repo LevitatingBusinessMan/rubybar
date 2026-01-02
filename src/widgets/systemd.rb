@@ -45,11 +45,15 @@ class Widgets::Systemd < Widgets::Widget
     end
     
     def self.toggle unit
+      begin
         if unit["ActiveState"] == "active"
             unit.Stop "replace"
         else
             unit.Start "replace"
         end
+      rescue => ex
+        warn ex
+      end
     end
 
     def self.get_manager user=false

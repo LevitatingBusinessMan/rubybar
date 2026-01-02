@@ -60,4 +60,4 @@ app.signal_connect :activate do |app|
   bar.show
 end
 
-app.run  
+app.run

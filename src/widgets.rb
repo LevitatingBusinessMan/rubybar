@@ -1,9 +1,11 @@
 require "gtk4"
+require_relative "./util.rb"
 
 # This module contains all the widgets and the base class Widget.
 module Widgets
   DEFAULT_INTERVAL = 5
-
+  using RubyBar::Util::StringExtensions
+  
   # Base Widget class.
   # Defines some common behavior across top level widgets in the bar.
   class Widget < Gtk::Box
@@ -43,8 +45,11 @@ module Widgets
 
   # Like update but with error handling
   def update_safe
-    update
-    # no error handling yet whoops
+    begin
+      update
+    rescue => ex
+      warn ex
+    end
   end
 
 		private
@@ -83,3 +88,4 @@ require_relative "widgets/debug"
 require_relative "widgets/systemd"
 require_relative "widgets/time"
 require_relative "widgets/memory"
+require_relative "widgets/moon"

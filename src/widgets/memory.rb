@@ -22,7 +22,6 @@ class Widgets::Memory < Widgets::Widget
     end
     def update
         @meminfo = File.read('/proc/meminfo').lines.map {
-          p it
           key, value = it.match(/^([^:\s]+): +(\d+)/).captures
           [key, value.to_i]
         }.to_h

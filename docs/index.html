@@ -138,7 +138,7 @@
   <div id="classindex-section" class="nav-section">
   <h3>Class and Module Index</h3>
 
-  <ul class="link-list nav-list"><li><code><a href="./App.html">App</a></code></li><li><code><a href="./Bar.html">Bar</a></code></li><li><details><summary><code><a href="./DBusExtensions.html">DBusExtensions</a></code></summary><ul class="link-list nav-list"><li><details><summary><code><a href="./DBusExtensions/Message.html">Message</a></code></summary><ul class="link-list nav-list"><li><code><a href="./DBusExtensions/Message/AddInteractiveAuthFlag.html">AddInteractiveAuthFlag</a></code></li></ul></details></li></ul></details></li><li><code><a href="./DSL.html">DSL</a></code></li><li><code><a href="./String.html">String</a></code></li><li><details><summary><code><a href="./Widgets.html">Widgets</a></code></summary><ul class="link-list nav-list"><li><code><a href="./Widgets/Button.html">Button</a></code></li><li><code><a href="./Widgets/Custom.html">Custom</a></code></li><li><code><a href="./Widgets/Debug.html">Debug</a></code></li><li><code><a href="./Widgets/Load.html">Load</a></code></li><li><code><a href="./Widgets/Memory.html">Memory</a></code></li><li><code><a href="./Widgets/Power.html">Power</a></code></li><li><code><a href="./Widgets/Separator.html">Separator</a></code></li><li><code><a href="./Widgets/Systemd.html">Systemd</a></code></li><li><code><a href="./Widgets/Time.html">Time</a></code></li><li><code><a href="./Widgets/Uptime.html">Uptime</a></code></li><li><code><a href="./Widgets/Widget.html">Widget</a></code></li></ul></details></li></ul>
+  <ul class="link-list nav-list"><li><code><a href="./DSL.html">DSL</a></code></li><li><details><summary><code><a href="./Widgets.html">Widgets</a></code></summary><ul class="link-list nav-list"><li><code><a href="./Widgets/Button.html">Button</a></code></li><li><code><a href="./Widgets/Custom.html">Custom</a></code></li><li><code><a href="./Widgets/Debug.html">Debug</a></code></li><li><code><a href="./Widgets/Load.html">Load</a></code></li><li><code><a href="./Widgets/Memory.html">Memory</a></code></li><li><code><a href="./Widgets/Moon.html">Moon</a></code></li><li><code><a href="./Widgets/Power.html">Power</a></code></li><li><code><a href="./Widgets/Separator.html">Separator</a></code></li><li><code><a href="./Widgets/Systemd.html">Systemd</a></code></li><li><code><a href="./Widgets/Time.html">Time</a></code></li><li><code><a href="./Widgets/Uptime.html">Uptime</a></code></li><li><code><a href="./Widgets/Widget.html">Widget</a></code></li></ul></details></li></ul>
 </div>
 
 
@@ -163,7 +163,7 @@
 
 <pre class="ruby"><span class="ruby-identifier">widget</span> <span class="ruby-value">:power</span>
 
-<span class="ruby-identifier">widget</span> <span class="ruby-value">:uptime</span>, <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-identifier">spawn</span> <span class="ruby-string">&quot;alacritty -e htop&amp;&quot;</span> }
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:uptime</span>, <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-identifier">spawn</span> <span class="ruby-string">&quot;alacritty -e htop&quot;</span> }
 
 <span class="ruby-identifier">widget</span> <span class="ruby-value">:custom</span> <span class="ruby-keyword">do</span>
     <span class="ruby-ivar">@rand</span> = <span class="ruby-constant">Random</span>.<span class="ruby-identifier">rand</span> <span class="ruby-value">100</span>
@@ -179,6 +179,8 @@
 <span class="ruby-identifier">widget</span> <span class="ruby-value">:load</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">running</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;tasks: #{running}&quot;</span> <span class="ruby-keyword">end</span>
 
 <span class="ruby-identifier">widget</span> <span class="ruby-value">:systemd</span>, <span class="ruby-value">user:</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">service:</span> <span class="ruby-string">&quot;gammastep.service&quot;</span>
+
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:moon</span> <span class="ruby-keyword">do</span> <span class="ruby-node">&quot;moon: #{@phase}&quot;</span> <span class="ruby-keyword">end</span>
 
 <span class="ruby-identifier">css</span> <span class="ruby-identifier">&lt;&lt;CSS</span>
 <span class="ruby-value">box.red * {
