@@ -1,19 +1,21 @@
-Fri, 02 Jan 2026 22:01:58 +0100
+Sat, 03 Jan 2026 01:20:00 +0100
 src/app.rb	Fri, 02 Jan 2026 21:00:40 +0100
-src/astro.rb	Fri, 02 Jan 2026 21:49:19 +0100
-src/bar.rb	Fri, 02 Jan 2026 20:03:34 +0100
-src/dsl.rb	Fri, 02 Jan 2026 21:56:34 +0100
+src/astro.rb	Fri, 02 Jan 2026 22:28:32 +0100
+src/bar.rb	Sat, 03 Jan 2026 01:13:32 +0100
+src/dirs.rb	Fri, 02 Jan 2026 22:07:17 +0100
+src/dsl.rb	Sat, 03 Jan 2026 01:15:44 +0100
 src/main.rb	Fri, 02 Jan 2026 21:59:34 +0100
 src/util.rb	Fri, 02 Jan 2026 21:48:30 +0100
-src/widgets.rb	Fri, 02 Jan 2026 21:02:41 +0100
+src/widgets.rb	Sat, 03 Jan 2026 00:30:03 +0100
 src/widgets/button.rb	Wed, 21 May 2025 04:17:39 +0200
 src/widgets/custom.rb	Fri, 02 Jan 2026 19:50:37 +0100
 src/widgets/debug.rb	Mon, 05 May 2025 21:25:08 +0200
 src/widgets/load.rb	Fri, 02 Jan 2026 21:36:25 +0100
 src/widgets/memory.rb	Fri, 02 Jan 2026 20:21:42 +0100
 src/widgets/moon.rb	Fri, 02 Jan 2026 22:00:26 +0100
-src/widgets/power.rb	Thu, 24 Apr 2025 17:10:49 +0200
+src/widgets/power.rb	Sat, 03 Jan 2026 00:42:22 +0100
 src/widgets/separator.rb	Fri, 25 Apr 2025 00:38:16 +0200
+src/widgets/sway.rb	Sat, 03 Jan 2026 01:07:22 +0100
 src/widgets/systemd.rb	Fri, 02 Jan 2026 20:21:20 +0100
 src/widgets/time.rb	Fri, 25 Apr 2025 03:19:17 +0200
 src/widgets/uptime.rb	Fri, 02 Jan 2026 19:50:37 +0100

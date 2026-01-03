@@ -83,6 +83,7 @@ class DSL
       widgets: []
     }
     @separating = []
+    @align = nil
     instance_eval(File.read(path), path) if path
   end
 
@@ -123,10 +124,10 @@ class DSL
   def widget type, options={}, &block
     # optionally place a separator
     unless @separating.empty?
-      @options[:widgets] << @separating.last.merge({type: :separator})
+      @options[:widgets] << @separating.last.merge({type: :separator, align: @align})
     end
 
-    @options[:widgets] << options.merge({type: type, proc: block})
+    @options[:widgets] << options.merge({type: type, proc: block, align: @align})
   end
 
   # Set the spacing for the top-level box widget.  
@@ -152,6 +153,27 @@ class DSL
     @separating << options
     yield
     @separating.pop
+  end
+
+  def left
+    raise "cannot set align to :left, align is already set to #{align}" if @align
+    @align = :left
+    yield
+    @align = nil
+  end
+
+  def center
+    raise "cannot set align to :center, align is already set to #{align}" if @align
+    @align = :center
+    yield
+    @align = nil
+  end
+
+  def right
+    raise "cannot set align to :center, align is already set to #{align}" if @align
+    @align = :right
+    yield
+    @align = nil
   end
 
 end

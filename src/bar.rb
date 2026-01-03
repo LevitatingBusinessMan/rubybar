@@ -10,18 +10,36 @@ class Bar < Gtk::ApplicationWindow # :nodoc:
 
     set_layer_shell
 
-    # box
-    box = Gtk::Box.new :horizontal
-    box.valign = :center
-    box.halign = :center
-    box.spacing = app.options[:spacing] || 10
-    box.name = "bar"
-    set_child box
+    center_box = Gtk::CenterBox.new
+    
+    left = Gtk::Box.new :horizontal
+    left.spacing = app.options[:spacing] || 10
+    left.name = "left"
+
+    center = Gtk::Box.new :horizontal
+    center.spacing = app.options[:spacing] || 10
+    center.name = "center"
+
+    right = Gtk::Box.new :horizontal
+    right.spacing = app.options[:spacing] || 10
+    right.name = "right"
+    
+    center_box.set_start_widget left
+    center_box.set_center_widget center
+    center_box.set_end_widget right
+    set_child center_box
 
     for widget in app.options[:widgets]
       pp widget if app.options[:verbose]
       if (klass = Widgets::Widget.from_options widget)
-        box.append klass
+        case widget[:align]
+        when :left
+          left.append klass
+        when :right
+          right.append klass
+        else
+          center.append klass
+        end
       else
         puts "Unknown widget name #{widget[:type].inspect}"
       end

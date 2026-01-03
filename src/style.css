@@ -16,3 +16,12 @@ button {
 button:hover {
     border: 1px solid #73BA25;
 }
+
+button.sway_ws_button {
+  padding: 3px;
+}
+
+button.sway_ws_button.focus {
+  border: 1px solid #73BA25;
+  color: blue;
+}

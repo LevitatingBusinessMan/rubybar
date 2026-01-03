@@ -17,16 +17,20 @@ module RubyBar # :nodoc:
     end
   
     private
+    def ephem_path
+      "#{RubyBar::Dirs.tmp}/de421.bsp"
+    end
+    
     def download
-      if ! File.exist? "tmp/de421.bsp"
+      if ! File.exist? ephem_path
         warn "astro: downloading ephemeride"
-        Astronoby::Ephem.download(name: "de421.bsp", target: "#{RubyBar::Dirs.tmp}/de421.bsp")
+        Astronoby::Ephem.download(name: "de421.bsp", target: ephem_path)
         warn "astro: finished downloading ephemride"
       end
     end
     
     def load
-      @ephem = Astronoby::Ephem.load("#{RubyBar::Dirs.tmp}/de421.bsp")
+      @ephem = Astronoby::Ephem.load ephem_path
     end
 
   end

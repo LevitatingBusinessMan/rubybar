@@ -1,5 +1,6 @@
 require "gtk4"
 require_relative "./util.rb"
+require "low_type"
 
 # This module contains all the widgets and the base class Widget.
 module Widgets
@@ -9,6 +10,8 @@ module Widgets
   # Base Widget class.
   # Defines some common behavior across top level widgets in the bar.
   class Widget < Gtk::Box
+    include LowType
+
     # Interval with which to update this widget
     attr_accessor :interval
 
@@ -24,6 +27,8 @@ module Widgets
       add_css_class @options[:class] if @options[:class]
       self.name = @options[:name] if @options[:name]
 
+      set_halign @options[:halign] || :center
+      
       @click_controller = Gtk::GestureClick.new
       @click_controller.button = Gdk::BUTTON_PRIMARY
       add_controller(@click_controller)
@@ -48,14 +53,14 @@ module Widgets
     begin
       update
     rescue => ex
-      warn ex
+      warn "#{self.class.name.split('::').last}: #{ex}"
     end
   end
 
 		private
 		def init_timer
 			update_safe
-			return if @interval == nil
+			return unless @interval
 			@timer = Thread.new {
 				loop do
 					sleep @interval
@@ -89,3 +94,4 @@ require_relative "widgets/systemd"
 require_relative "widgets/time"
 require_relative "widgets/memory"
 require_relative "widgets/moon"
+require_relative "widgets/sway"

@@ -83,6 +83,18 @@
 
 
   
+<div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+
+
+    <li><span class="include">LowType</span></li>
+
+
+  </ul>
+</div>
+
 
   
 
@@ -232,7 +244,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="from_options-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 68</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">from_options</span> <span class="ruby-identifier">widget</span>
   <span class="ruby-identifier">class_name</span> = <span class="ruby-identifier">widget</span>[<span class="ruby-value">:type</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">Widgets</span>.<span class="ruby-identifier">const_defined?</span> <span class="ruby-identifier">class_name</span>
@@ -282,7 +294,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 18</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>={}
   <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">options</span>
   <span class="ruby-ivar">@interval</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:interval</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_INTERVAL</span>
@@ -292,6 +304,8 @@
   <span class="ruby-identifier">add_css_class</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:class</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:class</span>]
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-value">:name</span>] <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:name</span>]
 
+  <span class="ruby-identifier">set_halign</span> <span class="ruby-ivar">@options</span>[<span class="ruby-value">:halign</span>] <span class="ruby-operator">||</span> <span class="ruby-value">:center</span>
+  
   <span class="ruby-ivar">@click_controller</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">GestureClick</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@click_controller</span>.<span class="ruby-identifier">button</span> = <span class="ruby-constant">Gdk</span><span class="ruby-operator">::</span><span class="ruby-constant">BUTTON_PRIMARY</span>
   <span class="ruby-identifier">add_controller</span>(<span class="ruby-ivar">@click_controller</span>)
@@ -358,7 +372,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 42</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
   <span class="ruby-comment"># nothing</span>
 <span class="ruby-keyword">end</span></pre>
@@ -402,12 +416,12 @@
         <div class="method-description">
 
           <div class="method-source-code" id="update_safe-source">
-            <pre><span class="ruby-comment"># File src/widgets.rb, line 47</span>
+            <pre><span class="ruby-comment"># File src/widgets.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update_safe</span>
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">update</span>
   <span class="ruby-keyword">rescue</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">ex</span>
-    <span class="ruby-identifier">warn</span> <span class="ruby-identifier">ex</span>
+    <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;#{self.class.name.split(&#39;::&#39;).last}: #{ex}&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

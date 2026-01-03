@@ -162,9 +162,15 @@
 
       <li ><a href="#method-i-background">background</a></li>
 
+      <li ><a href="#method-i-center">center</a></li>
+
       <li ><a href="#method-i-color">color</a></li>
 
       <li ><a href="#method-i-css">css</a></li>
+
+      <li ><a href="#method-i-left">left</a></li>
+
+      <li ><a href="#method-i-right">right</a></li>
 
       <li ><a href="#method-i-separated">separated</a></li>
 
@@ -345,6 +351,7 @@
     <span class="ruby-value">widgets:</span> []
   }
   <span class="ruby-ivar">@separating</span> = []
+  <span class="ruby-ivar">@align</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-identifier">instance_eval</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">path</span>), <span class="ruby-identifier">path</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -395,7 +402,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="background-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 97</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">background</span> <span class="ruby-identifier">value</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:background</span>] = <span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>
@@ -406,6 +413,53 @@
           <p>The window background color.</p>
 
 <p>Defaults to <code>&quot;rgba(0, 0, 0, 0.5)&quot;</code>.</p>
+
+
+        </div>
+
+
+
+
+
+      </div>
+
+
+      <div id="method-i-center" class="method-detail anchor-link ">
+        <div class="method-header">
+
+            <div class="method-heading">
+              <a href="#method-i-center" title="Link to this method">
+                <span class="method-name">center</span>
+                <span class="method-args">() { || ... }</span>
+              </a>
+            </div>
+
+        </div>
+
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+
+
+
+        <div class="method-description">
+
+          <div class="method-source-code" id="center-source">
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">center</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;cannot set align to :center, align is already set to #{align}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@align</span>
+  <span class="ruby-ivar">@align</span> = <span class="ruby-value">:center</span>
+  <span class="ruby-keyword">yield</span>
+  <span class="ruby-ivar">@align</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+
+
+
+          
 
 
         </div>
@@ -441,7 +495,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="color-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 91</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">color</span> <span class="ruby-identifier">value</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:color</span>] = <span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>
@@ -487,7 +541,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="css-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 118</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">css</span> <span class="ruby-identifier">css</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:css</span>] = <span class="ruby-identifier">css</span>
 <span class="ruby-keyword">end</span></pre>
@@ -523,6 +577,100 @@
       </div>
 
 
+      <div id="method-i-left" class="method-detail anchor-link ">
+        <div class="method-header">
+
+            <div class="method-heading">
+              <a href="#method-i-left" title="Link to this method">
+                <span class="method-name">left</span>
+                <span class="method-args">() { || ... }</span>
+              </a>
+            </div>
+
+        </div>
+
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+
+
+
+        <div class="method-description">
+
+          <div class="method-source-code" id="left-source">
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 158</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">left</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;cannot set align to :left, align is already set to #{align}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@align</span>
+  <span class="ruby-ivar">@align</span> = <span class="ruby-value">:left</span>
+  <span class="ruby-keyword">yield</span>
+  <span class="ruby-ivar">@align</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+
+
+
+          
+
+
+        </div>
+
+
+
+
+
+      </div>
+
+
+      <div id="method-i-right" class="method-detail anchor-link ">
+        <div class="method-header">
+
+            <div class="method-heading">
+              <a href="#method-i-right" title="Link to this method">
+                <span class="method-name">right</span>
+                <span class="method-args">() { || ... }</span>
+              </a>
+            </div>
+
+        </div>
+
+
+          <div class="method-controls">
+            <details class="method-source-toggle">
+              <summary>Source</summary>
+            </details>
+          </div>
+
+
+
+        <div class="method-description">
+
+          <div class="method-source-code" id="right-source">
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">right</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;cannot set align to :center, align is already set to #{align}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@align</span>
+  <span class="ruby-ivar">@align</span> = <span class="ruby-value">:right</span>
+  <span class="ruby-keyword">yield</span>
+  <span class="ruby-ivar">@align</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+
+
+
+          
+
+
+        </div>
+
+
+
+
+
+      </div>
+
+
       <div id="method-i-separated" class="method-detail anchor-link ">
         <div class="method-header">
 
@@ -547,7 +695,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="separated-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 151</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 152</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">separated</span> <span class="ruby-identifier">options</span>={}
   <span class="ruby-ivar">@separating</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">options</span>
   <span class="ruby-keyword">yield</span>
@@ -608,7 +756,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="spacing-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 135</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 136</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">spacing</span> <span class="ruby-identifier">spacing</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:spacing</span>] = <span class="ruby-identifier">spacing</span>
 <span class="ruby-keyword">end</span></pre>
@@ -656,14 +804,14 @@
         <div class="method-description">
 
           <div class="method-source-code" id="widget-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 123</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">widget</span> <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
   <span class="ruby-comment"># optionally place a separator</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@separating</span>.<span class="ruby-identifier">empty?</span>
-    <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@separating</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-value">type:</span> <span class="ruby-value">:separator</span>})
+    <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@separating</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-value">type:</span> <span class="ruby-value">:separator</span>, <span class="ruby-value">align:</span> <span class="ruby-ivar">@align</span>})
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-value">type:</span> <span class="ruby-identifier">type</span>, <span class="ruby-value">proc:</span> <span class="ruby-identifier">block</span>})
+  <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-value">type:</span> <span class="ruby-identifier">type</span>, <span class="ruby-value">proc:</span> <span class="ruby-identifier">block</span>, <span class="ruby-value">align:</span> <span class="ruby-ivar">@align</span>})
 <span class="ruby-keyword">end</span></pre>
           </div>
 
