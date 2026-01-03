@@ -5,13 +5,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>class Widgets::Widget - RDoc Documentation</title>
+<title>class Widgets::BaseWidget - RDoc Documentation</title>
 
 
-  <meta name="keywords" content="ruby,class,Widgets::Widget">
+  <meta name="keywords" content="ruby,class,Widgets::BaseWidget">
 
 
-    <meta name="description" content="class Widgets::Widget: Base Widget class. Defines some common behavior across top level widgets in the bar.">
+    <meta name="description" content="class Widgets::BaseWidget: Base Widget class. Defines some common behavior across top level widgets in the bar.">
 
 
 
@@ -133,7 +133,7 @@
 
 </nav>
 
-<main role="main" aria-labelledby="class-Widgets::Widget">
+<main role="main" aria-labelledby="class-Widgets::BaseWidget">
   
   
     <ol role="navigation" aria-label="Breadcrumb navigation" class="breadcrumb">
@@ -146,20 +146,20 @@
       
       <li>
         
-        <span>Widget</span>
+        <span>BaseWidget</span>
         
       </li>
       
     </ol>
   
 
-  <h1 id="class-Widgets::Widget" class="anchor-link class">
-    class Widgets::Widget
+  <h1 id="class-Widgets::BaseWidget" class="anchor-link class">
+    class Widgets::BaseWidget
   </h1>
 
   <section class="description">
     
-<p>Base <a href="Widget.html"><code>Widget</code></a> class. Defines some common behavior across top level widgets in the bar.</p>
+<p>Base Widget class. Defines some common behavior across top level widgets in the bar.</p>
 
   </section>
 
@@ -258,7 +258,7 @@
 
 
 
-          <p>Create a <a href="Widget.html"><code>Widgets::Widget</code></a> from a hash with options</p>
+          <p>Create a Widgets::Widget from a hash with options</p>
 
 
         </div>
@@ -421,7 +421,7 @@
   <span class="ruby-keyword">begin</span>
     <span class="ruby-identifier">update</span>
   <span class="ruby-keyword">rescue</span> <span class="ruby-operator">=&gt;</span> <span class="ruby-identifier">ex</span>
-    <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;#{self.class.name.split(&#39;::&#39;).last}: #{ex}&quot;</span>
+    <span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;#{self.class.name.split(&#39;::&#39;).last}: #{ex} (#{ex.backtrace.first})&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>

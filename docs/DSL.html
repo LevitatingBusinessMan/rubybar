@@ -205,7 +205,8 @@
 
 <p>Example configuration file:</p>
 
-<pre class="ruby"><span class="ruby-identifier">widget</span> <span class="ruby-value">:power</span>
+<pre class="ruby"><span class="ruby-comment"># encoding: utf-8</span>
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:power</span>
 <span class="ruby-identifier">widget</span> <span class="ruby-value">:uptime</span>, <span class="ruby-value">on_click:</span> <span class="ruby-operator">-&gt;</span> { <span class="ruby-identifier">spawn</span> <span class="ruby-string">&quot;alacritty -e htop&amp;&quot;</span> }
 <span class="ruby-identifier">widget</span> <span class="ruby-value">:custom</span>,
     <span class="ruby-value">interval:</span> <span class="ruby-value">1</span>,
@@ -273,7 +274,7 @@
 
 <p>This hash is then used to configure the bar. This hash is printed when rubybar is run in verbose mode.</p>
 
-<p>The <a href="DSL.html#method-i-widget"><code>DSL#widget</code></a> method also creates a hash that can then be used by <a href="Widgets/Widget.html#method-c-from_options"><code>Widgets::Widget::from_options</code></a> to build a <a href="Widgets/Widget.html"><code>Widgets::Widget</code></a>.</p>
+<p>The <a href="DSL.html#method-i-widget"><code>DSL#widget</code></a> method also creates a hash that can then be used by Widgets::Widget::from_options to build a Widgets::Widget.</p>
 
   </section>
 
@@ -342,7 +343,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 78</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">path</span>
   <span class="ruby-ivar">@options</span> = {
     <span class="ruby-value">color:</span> <span class="ruby-string">&quot;white&quot;</span>,
@@ -402,7 +403,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="background-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 98</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">background</span> <span class="ruby-identifier">value</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:background</span>] = <span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>
@@ -448,7 +449,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="center-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 178</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 179</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">center</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;cannot set align to :center, align is already set to #{align}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@align</span>
   <span class="ruby-ivar">@align</span> = <span class="ruby-value">:center</span>
@@ -495,7 +496,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="color-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 92</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">color</span> <span class="ruby-identifier">value</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:color</span>] = <span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>
@@ -541,7 +542,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="css-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 119</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">css</span> <span class="ruby-identifier">css</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:css</span>] = <span class="ruby-identifier">css</span>
 <span class="ruby-keyword">end</span></pre>
@@ -551,7 +552,7 @@
 
           <p>Add custom CSS.</p>
 
-<p>This can be combined with the ability to configure a <a href="Widgets/Widget.html"><code>Widgets::Widget</code></a> with a custom name and/or class for setting styles for a specific widget.</p>
+<p>This can be combined with the ability to configure a Widgets::Widget with a custom name and/or class for setting styles for a specific widget.</p>
 
 <p>All the top-level widgets can be selected as box.barwidget.</p>
 
@@ -601,7 +602,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="left-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 170</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 171</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">left</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;cannot set align to :left, align is already set to #{align}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@align</span>
   <span class="ruby-ivar">@align</span> = <span class="ruby-value">:left</span>
@@ -655,7 +656,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="right-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 192</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 193</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">right</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;cannot set align to :center, align is already set to #{align}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@align</span>
   <span class="ruby-ivar">@align</span> = <span class="ruby-value">:right</span>
@@ -710,7 +711,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="separated-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 156</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 157</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">separated</span> <span class="ruby-identifier">options</span>={}
   <span class="ruby-comment"># the first value defines if a widget has already been placed in this group</span>
   <span class="ruby-comment"># (to skip the first seperator)</span>
@@ -773,7 +774,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="spacing-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 140</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 141</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">spacing</span> <span class="ruby-identifier">spacing</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:spacing</span>] = <span class="ruby-identifier">spacing</span>
 <span class="ruby-keyword">end</span></pre>
@@ -821,7 +822,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="widget-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 124</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">widget</span> <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
   <span class="ruby-comment"># optionally place a separator</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@separating</span>.<span class="ruby-identifier">empty?</span>
@@ -838,7 +839,7 @@
 
 
 
-          <p>Configure a <a href="Widgets/Widget.html"><code>Widgets::Widget</code></a> for your bar.</p>
+          <p>Configure a Widgets::Widget for your bar.</p>
 
 
         </div>

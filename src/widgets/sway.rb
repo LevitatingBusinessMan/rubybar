@@ -11,16 +11,27 @@ class WorkspaceButton < Gtk::Button # :nodoc:
     @id = ws["id"]
     super label: @name
     add_css_class "sway_ws_button"
-    set_focus ws["focused"]
+    set_focused ws["focused"]
+    set_urgent ws["urgent"]
+    set_cursor Gdk::Cursor.new(:pointer)
   end
   
-  def set_focus(focus = Boolean)
+  def set_focused(focus = Boolean)
     if focus
       add_css_class "focus"
     else
       remove_css_class "focus"
     end
   end
+  
+  def set_urgent(urgent = Boolean)
+    if urgent
+      add_css_class "urgent"
+    else
+      remove_css_class "urgent"
+    end
+  end
+  
 end
 
 class Widgets::Sway < Widgets::BaseWidget
@@ -32,8 +43,6 @@ class Widgets::Sway < Widgets::BaseWidget
       @sock = UNIXSocket.new ENV["SWAYSOCK"]
       #@mutex = Thread::Mutex.new
       
-      set_spacing options[:spacing] || 3
-
       read_loop
       get_workspaces
       subscribe_workspaces
@@ -49,7 +58,8 @@ class Widgets::Sway < Widgets::BaseWidget
     end
     for ws in @workspaces.sort_by! { it["name"].to_i }
       if ws_button = children.find { it.id == ws["id"] }
-        ws_button.set_focus ws["focused"]
+        ws_button.set_focused ws["focused"]
+        ws_button.set_urgent ws["urgent"]
         next
       end
       ws_button = WorkspaceButton.new(ws)

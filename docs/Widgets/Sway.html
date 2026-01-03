@@ -78,7 +78,7 @@
   
 <div id="parent-class-section" class="nav-section">
   <h3>Ancestors</h3>
-  <ul><li><a href="Widget.html">Widgets::Widget</a><ul><li>Gtk::Box</li></ul></li></ul>
+  <ul><li><a href="BaseWidget.html">Widgets::BaseWidget</a><ul><li>Gtk::Box</li></ul></li></ul>
 </div>
 
 
@@ -198,15 +198,13 @@
         <div class="method-description">
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets/sway.rb, line 29</span>
+            <pre><span class="ruby-comment"># File src/widgets/sway.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
     <span class="ruby-keyword">super</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;sway: SWAYSOCK not defined&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;SWAYSOCK&quot;</span>]
     <span class="ruby-ivar">@sock</span> = <span class="ruby-constant">UNIXSocket</span>.<span class="ruby-identifier">new</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;SWAYSOCK&quot;</span>]
     <span class="ruby-comment">#@mutex = Thread::Mutex.new</span>
     
-    <span class="ruby-identifier">set_spacing</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:spacing</span>] <span class="ruby-operator">||</span> <span class="ruby-value">3</span>
-
     <span class="ruby-identifier">read_loop</span>
     <span class="ruby-identifier">get_workspaces</span>
     <span class="ruby-identifier">subscribe_workspaces</span>
@@ -220,7 +218,7 @@
 
             <div class="method-calls-super">
               Calls superclass method
-              <a href="Widget.html#method-c-new"><code>Widgets::Widget::new</code></a>
+              <a href="BaseWidget.html#method-c-new"><code>Widgets::BaseWidget::new</code></a>
             </div>
 
         </div>
@@ -264,7 +262,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets/sway.rb, line 42</span>
+            <pre><span class="ruby-comment"># File src/widgets/sway.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@workspaces</span>
   <span class="ruby-comment"># we can&#39;t sort a box, so if there is a new ws we just remove all existing children</span>
@@ -275,7 +273,8 @@
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">for</span> <span class="ruby-identifier">ws</span> <span class="ruby-keyword">in</span> <span class="ruby-ivar">@workspaces</span>.<span class="ruby-identifier">sort_by!</span> { <span class="ruby-identifier">it</span>[<span class="ruby-string">&quot;name&quot;</span>].<span class="ruby-identifier">to_i</span> }
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">ws_button</span> = <span class="ruby-identifier">children</span>.<span class="ruby-identifier">find</span> { <span class="ruby-identifier">it</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">ws</span>[<span class="ruby-string">&quot;id&quot;</span>] }
-      <span class="ruby-identifier">ws_button</span>.<span class="ruby-identifier">set_focus</span> <span class="ruby-identifier">ws</span>[<span class="ruby-string">&quot;focused&quot;</span>]
+      <span class="ruby-identifier">ws_button</span>.<span class="ruby-identifier">set_focused</span> <span class="ruby-identifier">ws</span>[<span class="ruby-string">&quot;focused&quot;</span>]
+      <span class="ruby-identifier">ws_button</span>.<span class="ruby-identifier">set_urgent</span> <span class="ruby-identifier">ws</span>[<span class="ruby-string">&quot;urgent&quot;</span>]
       <span class="ruby-keyword">next</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">ws_button</span> = <span class="ruby-constant">WorkspaceButton</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ws</span>)

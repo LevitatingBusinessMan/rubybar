@@ -11,9 +11,12 @@ module RubyBar
       $bar = self
   
       set_layer_shell
-  
+        
       @center_box = Gtk::CenterBox.new
-      
+      @center_box.name = "bar"
+      @center_box.hexpand = true
+      @center_box.vexpand = true
+
       @left = Gtk::Box.new :horizontal
       @left.spacing = app.options[:spacing] || 10
       @left.name = "left"

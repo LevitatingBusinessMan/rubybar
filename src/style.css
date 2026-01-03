@@ -19,9 +19,18 @@ button:hover {
 
 button.sway_ws_button {
   padding: 3px;
+  border-radius: 0;
+  border: 1px solid white;
 }
 
 button.sway_ws_button.focus {
-  border: 1px solid #73BA25;
-  color: blue;
+  border-color: #73BA25;
+}
+
+button.sway_ws_button.urgent {
+  border-color: #f48434;
+}
+
+button.sway_ws_button.urgent label {
+  color:  #f48434;
 }
