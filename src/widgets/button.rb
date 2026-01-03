@@ -6,7 +6,7 @@ A generic button widget.
 It currently is exactly like the custom widget
 but styled as a button.
 =end
-class Widgets::Button < Widgets::Widget
+class Widgets::Button < Widgets::BaseWidget
     def initialize options
         super
         @button = Gtk::Button.new label: ''

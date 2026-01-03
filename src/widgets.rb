@@ -9,7 +9,7 @@ module Widgets
   
   # Base Widget class.
   # Defines some common behavior across top level widgets in the bar.
-  class Widget < Gtk::Box
+  class BaseWidget < Gtk::Box
     include LowType
 
     # Interval with which to update this widget
@@ -53,7 +53,7 @@ module Widgets
     begin
       update
     rescue => ex
-      warn "#{self.class.name.split('::').last}: #{ex}"
+      warn "#{self.class.name.split('::').last}: #{ex} (#{ex.backtrace.first})"
     end
   end
 
@@ -95,3 +95,4 @@ require_relative "widgets/time"
 require_relative "widgets/memory"
 require_relative "widgets/moon"
 require_relative "widgets/sway"
+require_relative "widgets/volume"

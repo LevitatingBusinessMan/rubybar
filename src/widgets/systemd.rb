@@ -23,7 +23,7 @@ Example:
   end
   
 =end
-class Widgets::Systemd < Widgets::Widget
+class Widgets::Systemd < Widgets::BaseWidget
     def initialize options
         raise "No service provided" unless options[:service]
         options[:cursor] ||= :pointer

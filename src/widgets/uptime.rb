@@ -2,7 +2,7 @@ require "gtk4"
 require_relative "../widgets"
 
 # A widget that executes `uptime`
-class Widgets::Uptime < Widgets::Widget
+class Widgets::Uptime < Widgets::BaseWidget
     def initialize options
         options[:interval] ||= 1
         super

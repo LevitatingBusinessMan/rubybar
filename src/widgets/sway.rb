@@ -23,7 +23,7 @@ class WorkspaceButton < Gtk::Button # :nodoc:
   end
 end
 
-class Widgets::Sway < Widgets::Widget
+class Widgets::Sway < Widgets::BaseWidget
   include LowType
 
   def initialize options

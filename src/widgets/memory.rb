@@ -13,7 +13,7 @@ Example:
   widget :memory do "cache: #{@cached / 1_000_000}GB" end
 
 =end
-class Widgets::Memory < Widgets::Widget
+class Widgets::Memory < Widgets::BaseWidget
     def initialize options
         super
         @label = Gtk::Label.new ''

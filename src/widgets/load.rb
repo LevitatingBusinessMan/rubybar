@@ -19,7 +19,7 @@ Example:
   widget :load do |short| "1m avg: #{short}" end
 
 =end
-class Widgets::Load < Widgets::Widget
+class Widgets::Load < Widgets::BaseWidget
     def initialize options
         super
         @label = Gtk::Label.new ''

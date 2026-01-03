@@ -6,7 +6,7 @@ require_relative "../widgets"
 #    Takes a Time#strftime format string.
 #    See {Formats for Dates and times}[https://docs.ruby-lang.org/en/master/strftime_formatting_rdoc.html].
 #    Default is +%H:%M:%S+.
-class Widgets::Time < Widgets::Widget
+class Widgets::Time < Widgets::BaseWidget
     def initialize options
         options[:interval] ||= 1
         super

@@ -33,7 +33,6 @@ config_path = if args.include? :config
     nil
 end
 
-
 puts "Config: #{config_path.inspect}"
 dsl = DSL.new config_path
 options = dsl.options.dup
@@ -56,7 +55,7 @@ require_relative "bar"
 app = App.new options
 
 app.signal_connect :activate do |app|
-  bar = Bar.new app
+  bar = RubyBar::Bar.new app
   bar.show
 end
 

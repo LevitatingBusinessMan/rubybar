@@ -6,7 +6,7 @@ require_relative "../astro"
 
 # https://sources.debian.org/src/bsdgames/2.17-35/pom/pom.c
 
-class Widgets::Moon < Widgets::Widget
+class Widgets::Moon < Widgets::BaseWidget
     def initialize options
         options[:interval] ||= 3600
         @astro = RubyBar::Astro.instance

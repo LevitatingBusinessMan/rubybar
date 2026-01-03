@@ -2,7 +2,7 @@ require "gtk4"
 require_relative "../widgets"
 
 # A custom widget that executs a proc
-class Widgets::Custom < Widgets::Widget
+class Widgets::Custom < Widgets::BaseWidget
     def initialize options
         super
         @label = Gtk::Label.new ''
