@@ -3,6 +3,7 @@ require_relative "widgets"
 =begin
 The configuration DSL.  
 Example configuration file:
+  # encoding: utf-8
   widget :power
   widget :uptime, on_click: -> { spawn "alacritty -e htop&" }
   widget :custom,
