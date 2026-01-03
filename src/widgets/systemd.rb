@@ -11,6 +11,7 @@ Show the status of a systemd unit.
   user service?
   
 Example:
+  # display collectd.service status
   widget :systemd, service: "collectd.service"
 
   # control gammastep as an icon

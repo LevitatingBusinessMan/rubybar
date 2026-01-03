@@ -161,6 +161,12 @@ class DSL
     @separating.pop
   end
 
+  # Place a group of widgets on the left
+  # 
+  # Example:
+  #   left {
+  #     widget :sway
+  #   }
   def left
     raise "cannot set align to :left, align is already set to #{align}" if @align
     @align = :left
@@ -168,6 +174,7 @@ class DSL
     @align = nil
   end
 
+  # Place a group of widgets in the center (default)
   def center
     raise "cannot set align to :center, align is already set to #{align}" if @align
     @align = :center
@@ -175,6 +182,13 @@ class DSL
     @align = nil
   end
 
+  # Place a group of widgets on the right
+  # 
+  # Example:
+  #   right {
+  #     widget :time
+  #     widget :moon
+  #   }
   def right
     raise "cannot set align to :center, align is already set to #{align}" if @align
     @align = :right

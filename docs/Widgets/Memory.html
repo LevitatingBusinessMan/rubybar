@@ -151,7 +151,7 @@
 
 <p>Example:</p>
 
-<pre class="ruby"><span class="ruby-identifier">widget</span> <span class="ruby-value">:memory</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">_</span>, <span class="ruby-identifier">cached</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;cache: #{cached / 1_000_000}GB&quot;</span> <span class="ruby-keyword">end</span>
+<pre class="ruby"><span class="ruby-identifier">widget</span> <span class="ruby-value">:memory</span> <span class="ruby-keyword">do</span> <span class="ruby-node">&quot;cache: #{@cached / 1_000_000}GB&quot;</span> <span class="ruby-keyword">end</span>
 </pre>
 
   </section>
@@ -268,7 +268,7 @@
     <span class="ruby-ivar">@free</span> = <span class="ruby-ivar">@meminfo</span>[<span class="ruby-string">&#39;MemFree&#39;</span>]
     <span class="ruby-ivar">@cached</span> = <span class="ruby-ivar">@meminfo</span>[<span class="ruby-string">&#39;Cached&#39;</span>]
     <span class="ruby-identifier">percentage_used</span> = ((<span class="ruby-ivar">@total</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@available</span>) <span class="ruby-operator">/</span> <span class="ruby-ivar">@total</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">*</span> <span class="ruby-value">100</span>
-    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-identifier">instance_exec</span>(<span class="ruby-ivar">@total</span>, <span class="ruby-ivar">@available</span>, <span class="ruby-ivar">@free</span>, <span class="ruby-ivar">@cached</span>, <span class="ruby-operator">&amp;</span><span class="ruby-ivar">@proc</span>) <span class="ruby-operator">||</span> <span class="ruby-node">&quot;memory: #{percentage_used.round(0)}%&quot;</span>
+    <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span> <span class="ruby-identifier">instance_exec</span>(<span class="ruby-operator">&amp;</span><span class="ruby-ivar">@proc</span>) <span class="ruby-operator">||</span> <span class="ruby-node">&quot;memory: #{percentage_used.round(0)}%&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
 

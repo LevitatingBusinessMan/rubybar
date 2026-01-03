@@ -11,7 +11,7 @@
   <meta name="keywords" content="ruby,class,Widgets::Systemd">
 
 
-    <meta name="description" content="class Widgets::Systemd: Show the status of a systemd unit.">
+    <meta name="description" content="class Widgets::Systemd: Show the status of a systemd unit. display collectd.">
 
 
 
@@ -160,6 +160,20 @@
 <p>user service?</p>
 </dd></dl>
 
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-comment"># display collectd.service status</span>
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:systemd</span>, <span class="ruby-value">service:</span> <span class="ruby-string">&quot;collectd.service&quot;</span>
+
+<span class="ruby-comment"># control gammastep as an icon</span>
+<span class="ruby-identifier">widget</span> <span class="ruby-value">:systemd</span>, <span class="ruby-value">user:</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">service:</span> <span class="ruby-string">&quot;gammastep.service&quot;</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-ivar">@unit</span>[<span class="ruby-string">&quot;ActiveState&quot;</span>]
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;active&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-string">&quot;🕯️&quot;</span>
+  <span class="ruby-keyword">else</span> <span class="ruby-string">&quot;☀️&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
   </section>
 
 
@@ -203,7 +217,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="get_manager-source">
-            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 59</span>
+            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">get_manager</span> <span class="ruby-identifier">user</span>=<span class="ruby-keyword">false</span>
     <span class="ruby-identifier">bus</span> = <span class="ruby-identifier">user</span> <span class="ruby-operator">?</span> <span class="ruby-constant">DBus</span>.<span class="ruby-identifier">session_bus</span> <span class="ruby-operator">:</span> <span class="ruby-constant">DBus</span>.<span class="ruby-identifier">system_bus</span>
     <span class="ruby-identifier">systemd</span> = <span class="ruby-identifier">bus</span>.<span class="ruby-identifier">service</span>(<span class="ruby-string">&quot;org.freedesktop.systemd1&quot;</span>)
@@ -252,7 +266,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="get_status_icon-source">
-            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 32</span>
+            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">get_status_icon</span> <span class="ruby-identifier">unit</span>
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">unit</span>[<span class="ruby-string">&quot;ActiveState&quot;</span>]
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;active&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-string">&quot;✅&quot;</span>
@@ -305,7 +319,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="get_unit-source">
-            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 68</span>
+            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">get_unit</span> <span class="ruby-identifier">unit_name</span>, <span class="ruby-identifier">user</span>=<span class="ruby-keyword">false</span>
     <span class="ruby-identifier">bus</span> = <span class="ruby-identifier">user</span> <span class="ruby-operator">?</span> <span class="ruby-constant">DBus</span><span class="ruby-operator">::</span><span class="ruby-constant">SessionBus</span>.<span class="ruby-identifier">instance</span> <span class="ruby-operator">:</span> <span class="ruby-constant">DBus</span><span class="ruby-operator">::</span><span class="ruby-constant">SystemBus</span>.<span class="ruby-identifier">instance</span>
     <span class="ruby-identifier">systemd</span> = <span class="ruby-identifier">bus</span>.<span class="ruby-identifier">service</span>(<span class="ruby-string">&quot;org.freedesktop.systemd1&quot;</span>)
@@ -361,20 +375,20 @@
         <div class="method-description">
 
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 14</span>
+            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">initialize</span> <span class="ruby-identifier">options</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;No service provided&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:service</span>]
     <span class="ruby-identifier">options</span>[<span class="ruby-value">:cursor</span>] <span class="ruby-operator">||=</span> <span class="ruby-value">:pointer</span>
     <span class="ruby-keyword">super</span>
     <span class="ruby-ivar">@unit</span> = <span class="ruby-constant">Widgets</span><span class="ruby-operator">::</span><span class="ruby-constant">Systemd</span>.<span class="ruby-identifier">get_unit</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:service</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:user</span>]
     <span class="ruby-ivar">@label</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&#39;&#39;</span>
-    <span class="ruby-identifier">init_timer</span>
     <span class="ruby-identifier">append</span> <span class="ruby-ivar">@label</span>
+    <span class="ruby-identifier">update_safe</span>
     <span class="ruby-ivar">@click_controller</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&quot;pressed&quot;</span>) { <span class="ruby-constant">Widgets</span><span class="ruby-operator">::</span><span class="ruby-constant">Systemd</span>.<span class="ruby-identifier">toggle</span> <span class="ruby-ivar">@unit</span>; <span class="ruby-identifier">update_safe</span> }
-
     <span class="ruby-ivar">@manager</span> = <span class="ruby-constant">Widgets</span><span class="ruby-operator">::</span><span class="ruby-constant">Systemd</span>.<span class="ruby-identifier">get_manager</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:user</span>]
     <span class="ruby-ivar">@manager</span>.<span class="ruby-constant">Subscribe</span>() <span class="ruby-keyword">rescue</span> <span class="ruby-string">&quot;systemd: Failed to subscribe&quot;</span>
     <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">on_signal</span>(<span class="ruby-string">&quot;JobRemoved&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">id</span>, <span class="ruby-identifier">job</span>, <span class="ruby-identifier">unit</span>, <span class="ruby-identifier">result</span><span class="ruby-operator">|</span> <span class="ruby-identifier">update_safe</span> }
+    <span class="ruby-ivar">@manager</span>.<span class="ruby-identifier">on_signal</span>(<span class="ruby-string">&quot;JobNew&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">id</span>, <span class="ruby-identifier">job</span>, <span class="ruby-identifier">unit</span>, <span class="ruby-identifier">result</span><span class="ruby-operator">|</span> <span class="ruby-identifier">update_safe</span> }
     <span class="ruby-identifier">options</span>[<span class="ruby-value">:user</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">DBus</span>.<span class="ruby-identifier">session_bus</span>.<span class="ruby-identifier">glibize</span> <span class="ruby-operator">:</span> <span class="ruby-constant">DBus</span>.<span class="ruby-identifier">system_bus</span>.<span class="ruby-identifier">glibize</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -422,7 +436,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="toggle-source">
-            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 47</span>
+            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier ruby-title">toggle</span> <span class="ruby-identifier">unit</span>
   <span class="ruby-keyword">begin</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">unit</span>[<span class="ruby-string">&quot;ActiveState&quot;</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;active&quot;</span>
@@ -482,7 +496,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 43</span>
+            <pre><span class="ruby-comment"># File src/widgets/systemd.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
     <span class="ruby-ivar">@label</span>.<span class="ruby-identifier">set_text</span>(<span class="ruby-identifier">instance_exec</span>(<span class="ruby-operator">&amp;</span><span class="ruby-ivar">@proc</span>) <span class="ruby-operator">||</span> <span class="ruby-node">&quot;#{@options[:service]} #{Widgets::Systemd.get_status_icon(@unit)}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>

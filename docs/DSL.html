@@ -448,7 +448,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="center-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 165</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">center</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;cannot set align to :center, align is already set to #{align}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@align</span>
   <span class="ruby-ivar">@align</span> = <span class="ruby-value">:center</span>
@@ -459,7 +459,7 @@
 
 
 
-          
+          <p>Place a group of widgets in the center (default)</p>
 
 
         </div>
@@ -601,7 +601,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="left-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 158</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 170</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">left</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;cannot set align to :left, align is already set to #{align}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@align</span>
   <span class="ruby-ivar">@align</span> = <span class="ruby-value">:left</span>
@@ -612,7 +612,14 @@
 
 
 
-          
+          <p>Place a group of widgets on the left</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">left</span> {
+  <span class="ruby-identifier">widget</span> <span class="ruby-value">:sway</span>
+}
+</pre>
 
 
         </div>
@@ -648,7 +655,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="right-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 172</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 192</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">right</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;cannot set align to :center, align is already set to #{align}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@align</span>
   <span class="ruby-ivar">@align</span> = <span class="ruby-value">:right</span>
@@ -659,7 +666,15 @@
 
 
 
-          
+          <p>Place a group of widgets on the right</p>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">right</span> {
+  <span class="ruby-identifier">widget</span> <span class="ruby-value">:time</span>
+  <span class="ruby-identifier">widget</span> <span class="ruby-value">:moon</span>
+}
+</pre>
 
 
         </div>
@@ -695,9 +710,11 @@
         <div class="method-description">
 
           <div class="method-source-code" id="separated-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 152</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">separated</span> <span class="ruby-identifier">options</span>={}
-  <span class="ruby-ivar">@separating</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">options</span>
+  <span class="ruby-comment"># the first value defines if a widget has already been placed in this group</span>
+  <span class="ruby-comment"># (to skip the first seperator)</span>
+  <span class="ruby-ivar">@separating</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-keyword">false</span>, <span class="ruby-identifier">options</span>]
   <span class="ruby-keyword">yield</span>
   <span class="ruby-ivar">@separating</span>.<span class="ruby-identifier">pop</span>
 <span class="ruby-keyword">end</span></pre>
@@ -756,7 +773,7 @@
         <div class="method-description">
 
           <div class="method-source-code" id="spacing-source">
-            <pre><span class="ruby-comment"># File src/dsl.rb, line 136</span>
+            <pre><span class="ruby-comment"># File src/dsl.rb, line 140</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">spacing</span> <span class="ruby-identifier">spacing</span>
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:spacing</span>] = <span class="ruby-identifier">spacing</span>
 <span class="ruby-keyword">end</span></pre>
@@ -808,7 +825,11 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">widget</span> <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
   <span class="ruby-comment"># optionally place a separator</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@separating</span>.<span class="ruby-identifier">empty?</span>
-    <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@separating</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-value">type:</span> <span class="ruby-value">:separator</span>, <span class="ruby-value">align:</span> <span class="ruby-ivar">@align</span>})
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@separating</span>.<span class="ruby-identifier">last</span>[<span class="ruby-value">0</span>]
+      <span class="ruby-ivar">@separating</span>.<span class="ruby-identifier">each</span> { <span class="ruby-identifier">it</span>[<span class="ruby-value">0</span>] = <span class="ruby-keyword">true</span> }
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@separating</span>.<span class="ruby-identifier">last</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">merge</span>({<span class="ruby-value">type:</span> <span class="ruby-value">:separator</span>, <span class="ruby-value">align:</span> <span class="ruby-ivar">@align</span>})
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-ivar">@options</span>[<span class="ruby-value">:widgets</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-value">type:</span> <span class="ruby-identifier">type</span>, <span class="ruby-value">proc:</span> <span class="ruby-identifier">block</span>, <span class="ruby-value">align:</span> <span class="ruby-ivar">@align</span>})
