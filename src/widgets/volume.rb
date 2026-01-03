@@ -42,7 +42,6 @@ class Widgets::Volume < Widgets::BaseWidget
       Thread.new {
         IO.popen("pactl subscribe") { |io|
           io.each_line do |line|
-            p line
             case line.chomp
             when /^Event 'change' on sink #(\d+)$/
               sink_id = $1.to_i
