@@ -10,7 +10,7 @@ You can make use of the instances values: @total, @available, @free, @cached and
 The values are in KB. @meminfo is a hash containing the raw /proc/meminfo data.
 
 Example:
-  widget :memory do |_, _, _, cached| "cache: #{cached / 1_000_000}GB" end
+  widget :memory do "cache: #{@cached / 1_000_000}GB" end
 
 =end
 class Widgets::Memory < Widgets::Widget
@@ -30,6 +30,6 @@ class Widgets::Memory < Widgets::Widget
         @free = @meminfo['MemFree']
         @cached = @meminfo['Cached']
         percentage_used = ((@total - @available) / @total.to_f) * 100
-        @label.set_text instance_exec(@total, @available, @free, @cached, &@proc) || "memory: #{percentage_used.round(0)}%"
+        @label.set_text instance_exec(&@proc) || "memory: #{percentage_used.round(0)}%"
     end
 end

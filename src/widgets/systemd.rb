@@ -9,6 +9,18 @@ Show the status of a systemd unit.
   what service?
 [user:]
   user service?
+  
+Example:
+  widget :systemd, service: "collectd.service"
+
+  # control gammastep as an icon
+  widget :systemd, user: true, service: "gammastep.service" do
+    case @unit["ActiveState"]
+    when "active" then "🕯️"
+    else "☀️"
+    end
+  end
+  
 =end
 class Widgets::Systemd < Widgets::Widget
     def initialize options
@@ -17,13 +29,13 @@ class Widgets::Systemd < Widgets::Widget
         super
         @unit = Widgets::Systemd.get_unit options[:service], options[:user]
         @label = Gtk::Label.new ''
-        init_timer
         append @label
+        update_safe
         @click_controller.signal_connect("pressed") { Widgets::Systemd.toggle @unit; update_safe }
-
         @manager = Widgets::Systemd.get_manager options[:user]
         @manager.Subscribe() rescue "systemd: Failed to subscribe"
         @manager.on_signal("JobRemoved") { |id, job, unit, result| update_safe }
+        @manager.on_signal("JobNew") { |id, job, unit, result| update_safe }
         options[:user] ? DBus.session_bus.glibize : DBus.system_bus.glibize
     end
 

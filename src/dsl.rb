@@ -124,7 +124,11 @@ class DSL
   def widget type, options={}, &block
     # optionally place a separator
     unless @separating.empty?
-      @options[:widgets] << @separating.last.merge({type: :separator, align: @align})
+      if !@separating.last[0]
+        @separating.each { it[0] = true }
+      else
+        @options[:widgets] << @separating.last[1].merge({type: :separator, align: @align})
+      end
     end
 
     @options[:widgets] << options.merge({type: type, proc: block, align: @align})
@@ -150,7 +154,9 @@ class DSL
   # Just in case some crazy person wants to make all his separators clickable or something.  
   # I don't know what people are out there.
   def separated options={}
-    @separating << options
+    # the first value defines if a widget has already been placed in this group
+    # (to skip the first seperator)
+    @separating << [false, options]
     yield
     @separating.pop
   end
@@ -175,5 +181,5 @@ class DSL
     yield
     @align = nil
   end
-
+  
 end

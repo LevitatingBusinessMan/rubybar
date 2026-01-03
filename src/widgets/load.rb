@@ -16,7 +16,7 @@ It is executed like
 
 Example:
   widget :load do |short, mid, long, running, tasks| "tasks: #{running}/#{tasks}" end
-  widget :load do |short| "5m avg: #{short}" end
+  widget :load do |short| "1m avg: #{short}" end
 
 =end
 class Widgets::Load < Widgets::Widget
