@@ -79,7 +79,7 @@ class DSL
   def initialize path
     @options = {
       color: "white",
-      background: "rgba(0, 0, 0, 0.5)",
+      background: "rgba(0, 0, 0, 0.8)",
       css: "",
       widgets: []
     }
