@@ -1,0 +1,11 @@
+[Unit]
+Description=Rubybar status bar
+After=graphical-session.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/rein/src/rubybar
+ExecStart=/usr/bin/bundle exec ruby /home/rein/src/rubybar/src/main.rb
+
+[Install]
+WantedBy=default.target
