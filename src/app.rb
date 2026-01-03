@@ -5,7 +5,7 @@ class App < Gtk::Application # :nodoc:
   attr_reader :options
 
   def initialize options
-    super "levitating.rubybar"
+    super "levitating.rubybar", [:non_unique]
     @options = options
     setup_dbus
     apply_css
