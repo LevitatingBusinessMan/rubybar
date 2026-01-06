@@ -44,6 +44,7 @@ class Widgets::Volume < Widgets::BaseWidget
           io.each_line do |line|
             case line.chomp
             when /^Event 'change' on sink #(\d+)$/
+              io.readline while io.ready?
               sink_id = $1.to_i
               get_default_sink_volume
               update_safe
