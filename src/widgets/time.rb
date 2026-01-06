@@ -17,5 +17,6 @@ class Widgets::Time < Widgets::BaseWidget
     end
     def update
         @label.set_text Time.now.strftime(@options[:format])
+        set_tooltip_text Time.now.to_s
     end
 end

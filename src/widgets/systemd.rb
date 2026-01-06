@@ -30,6 +30,7 @@ class Widgets::Systemd < Widgets::BaseWidget
         super
         @unit = Widgets::Systemd.get_unit options[:service], options[:user]
         @label = Gtk::Label.new ''
+        set_tooltip_text options[:service]
         append @label
         update_safe
         @click_controller.signal_connect("pressed") { Widgets::Systemd.toggle @unit; update_safe }
